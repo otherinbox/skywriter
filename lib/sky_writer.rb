@@ -1,11 +1,8 @@
 require "require_all"
 require "active_support/inflector"
+require "active_support/json"
 
 require_all 'lib'
 
 module SkyWriter
-  module Resource
-    module EC2
-    end
-  end
 end

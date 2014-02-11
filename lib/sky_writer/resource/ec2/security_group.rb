@@ -1,7 +1,9 @@
 module SkyWriter
-  module Resource
+  class Resource
     module EC2
-      class SecurityGroup
+      class SecurityGroup < SkyWriter::Resource
+        property :GroupDescription
+        property :SecurityGroupIngress
       end
     end
   end
