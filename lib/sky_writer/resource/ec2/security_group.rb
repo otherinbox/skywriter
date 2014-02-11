@@ -1,10 +1,8 @@
-require "require_all"
-
-require_all 'lib'
-
 module SkyWriter
   module Resource
     module EC2
+      class SecurityGroup
+      end
     end
   end
 end

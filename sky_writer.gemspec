@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = SkyWriter::VERSION
   spec.authors       = ["Ryan Michael"]
   spec.email         = ["kerinin@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Writes cloud formations}
+  spec.description   = %q{Writes AWS CloudFormation templates.}
+  spec.homepage      = "https://github.com/otherinbox/sky_writer#readme"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,6 +18,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "require_all"
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec", "~> 2.14"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "fuubar"
 end
