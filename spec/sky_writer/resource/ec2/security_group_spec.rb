@@ -5,7 +5,7 @@ describe SkyWriter::Resource::EC2::SecurityGroup do
     SkyWriter::Resource::EC2::SecurityGroup.new(
       group_description: "Test Security Group",
       security_group_ingress: [
-        SkyWriter::ResourceProperty::EC2::SecurityGroupRole.new
+        SkyWriter::ResourceProperty::EC2::SecurityGroupRule.new
       ],
     )
   end
