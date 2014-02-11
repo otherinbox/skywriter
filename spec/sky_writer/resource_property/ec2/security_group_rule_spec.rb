@@ -29,7 +29,7 @@ describe SkyWriter::ResourceProperty::EC2::SecurityGroupRule do
         FromPort: '22',
         ToPort: '22',
         IpProtocol: 'tcp',
-        CirdIp: '0.0.0.0/0',
+        CidrIp: '0.0.0.0/0',
         SourceSecurityGroupId: 'foo',
         SourceSecurityGroupOwnerId: 'bar',
         SourceSecurityGroupName: 'baz',
@@ -42,7 +42,7 @@ describe SkyWriter::ResourceProperty::EC2::SecurityGroupRule do
         FromPort: '22',
         ToPort: '22',
         IpProtocol: 'tcp',
-        CirdIp: '0.0.0.0/0',
+        CidrIp: '0.0.0.0/0',
       )
     end
   end

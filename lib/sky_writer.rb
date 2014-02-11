@@ -1,4 +1,5 @@
 require "require_all"
+require "active_support/inflector"
 
 require_all 'lib'
 

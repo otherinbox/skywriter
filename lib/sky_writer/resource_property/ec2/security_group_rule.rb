@@ -1,23 +1,19 @@
 module SkyWriter
-  module ResourceProperty
+  class ResourceProperty
     module EC2
-      class SecurityGroupRule
+      class SecurityGroupRule < SkyWriter::ResourceProperty
+        property :FromPort
+        property :ToPort
+        property :IpProtocol
+        property :CidrIp
 
-        def initialize(**options)
-        end
+        # Ingresses
+        property :SourceSecurityGroupName
+        property :SourceSecurityGroupOwnerId
+        property :SourceSecurityGroupId
 
-        def as_json
-          {
-            FromPort: from_port,
-            ToPort: to_port,
-            IpProtocol: ip_protocol,
-            CirdIp: cidr_ip,
-            SourceSecurityGroupId: source_security_group_id,
-            SourceSecurityGroupOwnerId: source_security_group_owner_id,
-            SourceSecurityGroupName: source_security_group_name,
-            DestinationSecurityGroupId: destination_security_group_id,
-          }.reject { |key, value| value.nil? || value.empty? }
-        end
+        # Egresses
+        property :DestinationSecurityGroupId
       end
     end
   end
