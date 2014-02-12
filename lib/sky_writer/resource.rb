@@ -12,27 +12,60 @@ module SkyWriter
     end
 
     def as_json
+      Thread.current[:as_json_context] = self
+
       { logical_name =>
         {
           'Type' => type,
           'Properties' => properties.as_json,
+          'DependsOn' => all_dependencies,
         }
       }
+    ensure
+      Thread.current[:as_json_context] = nil
     end
 
     def type
       @type ||= self.class.name.gsub("SkyWriter::Resource", "AWS")
     end
 
+    # @param with [:ref, :logical_name] How this pointer should be 
+    #   rendered in JSON.  Use `:ref` to generate {"Ref": "foo"},
+    #   and `:logical_name` to generate "foo"
+    def as_pointer(with: :ref)
+      case with
+      when :ref
+        SkyWriter::Resource::RefPointer.new(self)
+      when :logical_name
+        SkyWriter::Resource::LogicalNamePointer.new(self)
+      else
+        raise ArgumentError, "Unrecognized 'with' value '#{with}'"
+      end
+    end
+
+    def register_dependency(dependency)
+      magical_dependencies << dependency.logical_name
+    end
+
+    private
+
+    attr_reader :options
+
+    def all_dependencies
+      Set.new(magical_dependencies)
+    end
+
+    def magical_dependencies
+      @magical_dependencies ||= Set.new
+    end
+
     def properties
       @properties ||= property_definitions.each_with_object({}) do |property_definition, hash|
-        if (value = @options[property_definition.key])
+        if (value = options[property_definition.key])
           hash[property_definition.name] = value
         end
       end
     end
-
-    private
 
     def self.property_definitions
       @property_definitions ||= []
