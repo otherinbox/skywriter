@@ -4,14 +4,19 @@ module SkyWriter
       property_definitions << PropertyDefinition.new(name, options)
     end
 
-    def initialize(**options)
+    attr_reader :logical_name
+
+    def initialize(logical_name, **options)
+      @logical_name = logical_name
       @options = options.freeze
     end
 
     def as_json
-      {
-        'Type' => type,
-        'Properties' => properties.as_json,
+      { logical_name =>
+        {
+          'Type' => type,
+          'Properties' => properties.as_json,
+        }
       }
     end
 
