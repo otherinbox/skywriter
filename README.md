@@ -1,29 +1,17 @@
 # SkyWriter
 
-TODO: Write a gem description
+SkyWriter makes writing CloudFormation templates easier.
 
-## Installation
 
-Add this line to your application's Gemfile:
 
-    gem 'sky_writer'
+## Dependencies
 
-And then execute:
+When you are creating a resource, references to other resources 
+will be added to the `DependsOn` key automatically.  If you have
+additional dependencies which should be included in this key, 
+they can be declared like this:
 
-    $ bundle
+``` ruby
+Resource.new("ResourceName", additional_dependencies: ['foo', 'bar'])
+```
 
-Or install it yourself as:
-
-    $ gem install sky_writer
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( http://github.com/<my-github-username>/sky_writer/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request

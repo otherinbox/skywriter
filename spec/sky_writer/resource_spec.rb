@@ -25,11 +25,32 @@ describe SkyWriter::Resource do
       expect(resource.as_json['resource name']['Type']).to eq("AWS::TestResource")
     end
 
-    it "sets depends on key if ref pointer passed" do
-      reference = resource_class.new('reference', foo_bar: 'reference')
+    it "sets additional dependencies" do
+      resource = resource_class.new('resource name', additional_dependencies: 'value')
+
+      expect(resource.as_json['resource name']['DependsOn']).to include('value')
+    end
+
+    it "sets depends on key if pointer passed" do
+      reference = resource_class.new('reference')
       resource = resource_class.new('resource name', foo_bar: reference.as_pointer)
 
       expect(resource.as_json['resource name']['DependsOn']).to include('reference')
+    end
+    
+    it "merges magical and additional depedencies" do
+      reference = resource_class.new('reference')
+      resource = resource_class.new('resource name', foo_bar: reference.as_pointer, additional_dependencies: ['depends on'])
+
+      expect(resource.as_json['resource name']['DependsOn']).to include('reference')
+      expect(resource.as_json['resource name']['DependsOn']).to include('depends on')
+    end
+
+    it "removes duplicate depedencies" do
+      reference = resource_class.new('reference')
+      resource = resource_class.new('resource name', foo_bar: reference.as_pointer, additional_dependencies: ['reference', 'reference'])
+
+      expect(resource.as_json['resource name']['DependsOn']).to eq(['reference'])
     end
   end
 

@@ -52,7 +52,11 @@ module SkyWriter
     attr_reader :options
 
     def all_dependencies
-      Set.new(magical_dependencies)
+      (additional_dependencies + magical_dependencies).to_a
+    end
+
+    def additional_dependencies
+      Set.new(Array(options[:additional_dependencies]))
     end
 
     def magical_dependencies
