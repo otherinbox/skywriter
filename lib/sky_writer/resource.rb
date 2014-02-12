@@ -10,8 +10,8 @@ module SkyWriter
 
     def as_json
       {
-        Type: type,
-        Properties: properties.as_json,
+        'Type' => type,
+        'Properties' => properties.as_json,
       }
     end
 
@@ -42,7 +42,7 @@ module SkyWriter
     attr_reader :name, :key, :convert
 
     def initialize(name, **options)
-      @name = name
+      @name = name.to_s
       @key = name.to_s.underscore.to_sym
       @convert = options[:convert] || :to_s
     end

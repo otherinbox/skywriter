@@ -13,15 +13,15 @@ describe SkyWriter::ResourceProperty do
       subject { resource_property_class.new(foo_bar: '1').as_json }
 
       it "includes present properties" do
-        expect(subject).to have_key(:FooBar)
+        expect(subject).to have_key('FooBar')
       end
 
       it "excludes missing properties" do
-        expect(subject).to_not have_key(:BazQux)
+        expect(subject).to_not have_key('BazQux')
       end
 
       it "converts options appropriately" do
-        expect(subject[:FooBar]).to be_a(Numeric)
+        expect(subject['FooBar']).to be_a(Numeric)
       end
     end
 
@@ -29,11 +29,11 @@ describe SkyWriter::ResourceProperty do
       subject { resource_property_class.new(foo_bar: '1', baz_qux: nil).as_json }
 
       it "includes present properties" do
-        expect(subject).to have_key(:FooBar)
+        expect(subject).to have_key('FooBar')
       end
 
       it "excludes nil properties" do
-        expect(subject).to_not have_key(:BazQux)
+        expect(subject).to_not have_key('BazQux')
       end
     end
   end

@@ -3,7 +3,7 @@ module SkyWriter
     module EC2
       class SecurityGroup < SkyWriter::Resource
         property :GroupDescription
-        property :SecurityGroupIngress
+        property :SecurityGroupIngress, convert: :to_a
       end
     end
   end

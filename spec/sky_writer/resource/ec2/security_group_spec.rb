@@ -17,7 +17,7 @@ describe SkyWriter::Resource::EC2::SecurityGroup do
 
   describe "#as_json" do
     it "sets group description property" do
-      expect(resource.as_json[:Properties][:GroupDescription]).to eq("Test Security Group")
+      expect(resource.as_json['Properties']['GroupDescription']).to eq("Test Security Group")
     end
   end
 end
