@@ -19,6 +19,12 @@ describe SkyWriter::Resource do
       expect(resource.as_json['resource name']['Properties']['FooBar']).to eq("value")
     end
 
+    it "sets type" do
+      resource = resource_class.new('resource name', foo_bar: 'value')
+
+      expect(resource.as_json['resource name']['Type']).to eq("AWS::TestResource")
+    end
+
     it "sets depends on key if rich object passed in"
   end
 
