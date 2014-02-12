@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SkyWriter::ResourceProperty do
   let(:resource_property_class) do
     Class.new(SkyWriter::ResourceProperty) do
-      property :FooBar, convert: :to_i
+      property :FooBar, type: :integer
       property :BazQux
       property :Enumerable, convert: :to_a
     end
