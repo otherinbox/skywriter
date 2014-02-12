@@ -16,7 +16,7 @@ module Skywriter
       private
 
       def context
-        Thread.current[:as_json_context]
+        Thread.current[:skywriter_as_json_context]
       end
     end
   end

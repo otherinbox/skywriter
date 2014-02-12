@@ -12,7 +12,7 @@ module Skywriter
     end
 
     def as_json
-      Thread.current[:as_json_context] = self
+      Thread.current[:skywriter_as_json_context] = self
 
       { logical_name =>
         {
@@ -22,7 +22,7 @@ module Skywriter
         }
       }
     ensure
-      Thread.current[:as_json_context] = nil
+      Thread.current[:skywriter_as_json_context] = nil
     end
 
     def type
