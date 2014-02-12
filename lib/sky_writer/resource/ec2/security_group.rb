@@ -3,7 +3,7 @@ module SkyWriter
     module EC2
       class SecurityGroup < SkyWriter::Resource
         property :GroupDescription
-        property :SecurityGroupIngress, convert: :to_a
+        property :SecurityGroupIngress
         property :VpcId
       end
     end
