@@ -2,6 +2,11 @@ module SkyWriter
   class Resource
     module EC2
       class VPC < SkyWriter::Resource
+        property :CidrBlock
+        property :EnableDnsSupport
+        property :EnableDnsHostnames
+        property :InstanceTenancy
+        property :Tags
       end
     end
   end
