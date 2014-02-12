@@ -5,7 +5,6 @@ describe SkyWriter::ResourceProperty do
     Class.new(SkyWriter::ResourceProperty) do
       property :FooBar
       property :BazQux
-      property :Enumerable
     end
   end
 
