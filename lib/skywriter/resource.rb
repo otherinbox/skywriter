@@ -1,4 +1,4 @@
-module SkyWriter
+module Skywriter
   class Resource
     def self.property(name, **options)
       property_definitions << PropertyDefinition.new(name, options)
@@ -26,7 +26,7 @@ module SkyWriter
     end
 
     def type
-      @type ||= self.class.name.gsub("SkyWriter::Resource", "AWS")
+      @type ||= self.class.name.gsub("Skywriter::Resource", "AWS")
     end
 
     # @param with [:ref, :logical_name] How this pointer should be 
@@ -35,9 +35,9 @@ module SkyWriter
     def as_pointer(with: :ref)
       case with
       when :ref
-        SkyWriter::Resource::RefPointer.new(self)
+        Skywriter::Resource::RefPointer.new(self)
       when :logical_name
-        SkyWriter::Resource::LogicalNamePointer.new(self)
+        Skywriter::Resource::LogicalNamePointer.new(self)
       else
         raise ArgumentError, "Unrecognized 'with' value '#{with}'"
       end

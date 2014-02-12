@@ -1,4 +1,4 @@
-module SkyWriter
+module Skywriter
   class ResourceProperty
     def self.property(name, **options)
       property_definitions << PropertyDefinition.new(name, options)

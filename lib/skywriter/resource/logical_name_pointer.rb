@@ -1,4 +1,4 @@
-module SkyWriter
+module Skywriter
   class Resource
     class LogicalNamePointer < Pointer
       private

@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sky_writer/version'
+require 'skywriter/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "sky_writer"
-  spec.version       = SkyWriter::VERSION
+  spec.name          = "skywriter"
+  spec.version       = Skywriter::VERSION
   spec.authors       = ["Ryan Michael"]
   spec.email         = ["kerinin@gmail.com"]
   spec.summary       = %q{Writes cloud formations}
   spec.description   = %q{Writes AWS CloudFormation templates.}
-  spec.homepage      = "https://github.com/otherinbox/sky_writer#readme"
+  spec.homepage      = "https://github.com/otherinbox/skywriter#readme"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

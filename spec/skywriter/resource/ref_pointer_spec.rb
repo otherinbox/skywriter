@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe SkyWriter::Resource::RefPointer do
+describe Skywriter::Resource::RefPointer do
   let(:resource) { double("Resource", logical_name: "logical name") }
 
   let(:pointer) do
-    SkyWriter::Resource::RefPointer.new(resource)
+    Skywriter::Resource::RefPointer.new(resource)
   end
 
   describe "#as_json" do

@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe SkyWriter::Resource do
+describe Skywriter::Resource do
   let(:resource_class) do
-    Class.new(SkyWriter::Resource) do
+    Class.new(Skywriter::Resource) do
       property :FooBar
 
     end.tap do |klass|
       def klass.name
-        "SkyWriter::Resource::TestResource"
+        "Skywriter::Resource::TestResource"
       end
     end
   end
@@ -68,7 +68,7 @@ describe SkyWriter::Resource do
       subject { resource_class.new('resource name').as_pointer }
 
       it "returns a reference" do
-        expect(subject).to be_a(SkyWriter::Resource::RefPointer)
+        expect(subject).to be_a(Skywriter::Resource::RefPointer)
       end
     end
 
@@ -76,7 +76,7 @@ describe SkyWriter::Resource do
       subject { resource_class.new('resource name').as_pointer(with: :ref) }
 
       it "returns a logical name" do
-        expect(subject).to be_a(SkyWriter::Resource::RefPointer)
+        expect(subject).to be_a(Skywriter::Resource::RefPointer)
       end
     end
 
@@ -84,7 +84,7 @@ describe SkyWriter::Resource do
       subject { resource_class.new('resource name').as_pointer(with: :logical_name) }
 
       it "returns a logical name" do
-        expect(subject).to be_a(SkyWriter::Resource::LogicalNamePointer)
+        expect(subject).to be_a(Skywriter::Resource::LogicalNamePointer)
       end
     end
   end

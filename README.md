@@ -1,6 +1,6 @@
-# SkyWriter
+# Skywriter
 
-SkyWriter makes writing CloudFormation templates easier.
+Skywriter makes writing CloudFormation templates easier.
 
 
 

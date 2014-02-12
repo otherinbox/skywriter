@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe SkyWriter::ResourceProperty do
+describe Skywriter::ResourceProperty do
   let(:resource_property_class) do
-    Class.new(SkyWriter::ResourceProperty) do
+    Class.new(Skywriter::ResourceProperty) do
       property :FooBar
       property :BazQux
     end
