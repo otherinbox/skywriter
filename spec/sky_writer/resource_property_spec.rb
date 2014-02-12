@@ -3,9 +3,8 @@ require 'spec_helper'
 describe SkyWriter::ResourceProperty do
   let(:resource_property_class) do
     Class.new(SkyWriter::ResourceProperty) do
-      property :FooBar, convert: :to_i
+      property :FooBar
       property :BazQux
-      property :Enumerable, convert: :to_a
     end
   end
 
@@ -20,10 +19,6 @@ describe SkyWriter::ResourceProperty do
       it "excludes missing properties" do
         expect(subject).to_not have_key('BazQux')
       end
-
-      it "converts options appropriately" do
-        expect(subject['FooBar']).to be_a(Numeric)
-      end
     end
 
     context "with nil properties" do
@@ -35,18 +30,6 @@ describe SkyWriter::ResourceProperty do
 
       it "excludes nil properties" do
         expect(subject).to_not have_key('BazQux')
-      end
-    end
-
-    context "with empty enumerable properties" do
-      subject { resource_property_class.new(foo_bar: '1', enumerable: []).as_json }
-
-      it "includes present properties" do
-        expect(subject).to have_key('FooBar')
-      end
-
-      it "excludes empty properties" do
-        expect(subject).to_not have_key('Enumerable')
       end
     end
   end

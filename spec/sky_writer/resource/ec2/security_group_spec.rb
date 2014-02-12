@@ -8,8 +8,8 @@ describe SkyWriter::Resource::EC2::SecurityGroup do
       group_description: "Test Security Group",
       security_group_ingress: [
         SkyWriter::ResourceProperty::EC2::SecurityGroupRule.new(
-          from_port: 8000,
-          to_port: 8000,
+          from_port: '8000',
+          to_port: '8000',
           ip_protocol: 'tcp',
           cidr_ip: '0.0.0.0/0',
         )
