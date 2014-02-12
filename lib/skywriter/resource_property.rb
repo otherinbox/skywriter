@@ -1,27 +1,16 @@
-module SkyWriter
-  class Resource
+module Skywriter
+  class ResourceProperty
     def self.property(name, **options)
       property_definitions << PropertyDefinition.new(name, options)
     end
 
     def initialize(**options)
-      @options = options.freeze
+      @properties = options.freeze
     end
 
     def as_json
-      {
-        'Type' => type,
-        'Properties' => properties.as_json,
-      }
-    end
-
-    def type
-      @type ||= self.class.name.gsub("SkyWriter::Resource", "AWS")
-    end
-
-    def properties
-      @properties ||= property_definitions.each_with_object({}) do |property_definition, hash|
-        if (value = @options[property_definition.key])
+      @as_json ||= property_definitions.each_with_object({}) do |property_definition, hash|
+        if (value = @properties[property_definition.key])
           hash[property_definition.name] = value
         end
       end

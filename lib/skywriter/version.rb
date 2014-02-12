@@ -1,3 +1,3 @@
-module SkyWriter
+module Skywriter
   VERSION = "0.0.1"
 end

@@ -4,5 +4,5 @@ require "active_support/json"
 
 require_all 'lib'
 
-module SkyWriter
+module Skywriter
 end

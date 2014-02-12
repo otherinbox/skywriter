@@ -1,7 +1,7 @@
-module SkyWriter
+module Skywriter
   class ResourceProperty
     module EC2
-      class SecurityGroupRule < SkyWriter::ResourceProperty
+      class SecurityGroupRule < Skywriter::ResourceProperty
         property :FromPort
         property :ToPort
         property :IpProtocol
