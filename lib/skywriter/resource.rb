@@ -1,7 +1,22 @@
 module Skywriter
   module Resource
-    def self.property(name, **options)
-      property_definitions << PropertyDefinition.new(name, options)
+    module DSL
+      def property(name, **options)
+        property_definitions << PropertyDefinition.new(name, options)
+      end
+
+      def property_definitions
+        @property_definitions ||= []
+      end
+
+      class PropertyDefinition
+        attr_reader :name, :key
+
+        def initialize(name, **options)
+          @name = name.to_s
+          @key = name.to_s.underscore.to_sym
+        end
+      end
     end
 
     attr_reader :logical_name
@@ -55,6 +70,10 @@ module Skywriter
 
     attr_reader :options
 
+    def self.included(base)
+      base.extend(DSL)
+    end
+
     def all_dependencies
       (additional_dependencies + magical_dependencies).to_a
     end
@@ -75,21 +94,8 @@ module Skywriter
       end
     end
 
-    def self.property_definitions
-      @property_definitions ||= []
-    end
-
     def property_definitions
       self.class.property_definitions
-    end
-  end
-
-  class PropertyDefinition
-    attr_reader :name, :key
-
-    def initialize(name, **options)
-      @name = name.to_s
-      @key = name.to_s.underscore.to_sym
     end
   end
 end
