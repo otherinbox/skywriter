@@ -2,14 +2,12 @@ require 'spec_helper'
 
 describe Skywriter::Resource do
   let(:resource_class) do
-    Class.new(Skywriter::Resource) do
-      property :FooBar
+    class Skywriter::Resource::TestResource
+      include Skywriter::Resource
 
-    end.tap do |klass|
-      def klass.name
-        "Skywriter::Resource::TestResource"
-      end
+      property :FooBar
     end
+    Skywriter::Resource::TestResource
   end
 
   describe "#as_json" do
