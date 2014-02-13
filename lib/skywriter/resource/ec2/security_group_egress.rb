@@ -1,14 +1,16 @@
 module Skywriter
   class Resource
     module EC2
-      class SecurityGroupEgress < Skywriter::Resource
-        property :CidrIp
+      class SecurityGroupEgress < Skywriter::ResourceProperty::SecurityGroupRule
         property :DestinationSecurityGroupId
-        property :FromPort
         property :GroupId
-        property :IpProtocol
-        property :ToPort
       end
+    end
+  end
+
+  class ResourceProperty
+    module EC2
+      SecurityGroupEgress = Skywriter::Resource::EC2::SecurityGroupEgress
     end
   end
 end
