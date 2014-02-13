@@ -1,31 +1,76 @@
 module Skywriter
+  # CloudFormation Template
+  #
+  # Represents a CloudFormation template.
+  #
+  # @example
+  #   parameters = {"foo" => "bar"}
+  #   webserver = Skywriter::Resource::EC2::Instance.new('MyWebserver')
+  #   load_balancer = Skywriter::Resource::ElasticLoadBalancing::LoadBalancer.new('MyLoadBalancer')
+  #
+  #   template = Skywriter::Template.new(
+  #     description: "My Template",
+  #     parameters: parameters,
+  #     resources: [webserver, load_balancer]
+  #   )
+  #
+  #   AWS::CloudFormation.new.stacks.create('my-stack', template.to_json)
+  #
   class Template
     class MergeError < StandardError; end
 
-    attr_reader :format_version, :description, :resources
+    attr_reader :format_version, :description
+    attr_reader :parameters, :mappings, :conditions, :resources, :output
 
+    # Constructor
+    #
+    # See the AWS Documentation for details on the meaning of these parameters:
+    # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-template.html
+    #
+    # @param format_version [String] The AWS CloudFormation template version
+    # @param description [String] The stack description
+    # @param parameters [Hash] A hash of parameters
+    # @param mappings [Hash] A hash of mappings
+    # @param conditions [Hash] A hash of condition
+    # @param resources [Hash, Array<Skywriter::Resource>] Either a hash of
+    #   resources or an array of objects whose classwhich include 
+    #   Skywriter::Resource, for example Skywriter::Resource::EC2::Instance.
+    # @param outputs [Hash] A hash of outputs
     def initialize(options = {})
       @format_version   = options[:format_version].freeze
       @description      = options[:description].freeze
-      @resources        = (options[:resources] || []).freeze
+
+      @parameters       = (options[:parameters] || {}).freeze
+      @mappings         = (options[:mappings] || {}).freeze
+      @conditions       = (options[:conditions] || {}).freeze
+      @resources        = (options[:resources] || {}).freeze
+      @outputs          = (options[:outputs] || {}).freeze
     end
 
+    # Returns a hash representing the Template
+    #
     def as_json
       {
         'FormatVersion' => format_version,
-        'Description' => description,
-        'Parameters' => {},
-        'Mappings' => {},
-        'Conditions' => {},
-        'Resources' => resources_as_json,
-        'Outputs' => {},
+        'Description'   => description,
+        'Parameters'    => parameters.as_json,
+        'Mappings'      => mappings.as_json,
+        'Conditions'    => conditions.as_json,
+        'Resources'     => resources_as_json,
+        'Outputs'       => outputs.as_json,
+
       }.reject { |key, value| value.nil? }
     end
 
     private
 
     def resources_as_json
-      merge_disjoint_keys_and_duplicated_values(resources.map(&:as_json))
+      case resources
+      when Array
+        merge_disjoint_keys_and_duplicated_values(resources.map(&:as_json))
+      else
+        resources.as_json
+      end
     end
 
     def merge_disjoint_keys_and_duplicated_values(hashes)
