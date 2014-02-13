@@ -6,10 +6,10 @@ module Skywriter
         property :Value
         property :PropagateAtLaunch
       end
-    end
 
     Tags = Tag
 
+    end
   end
 end
 

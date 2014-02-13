@@ -1,4 +1,4 @@
-imodule Skywriter
+module Skywriter
   class ResourceProperty
     module CloudFront
       class CacheBehavior < Skywriter::ResourceProperty
