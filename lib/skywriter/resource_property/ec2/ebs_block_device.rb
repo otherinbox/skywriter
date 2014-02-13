@@ -9,11 +9,7 @@ module Skywriter
         property :VolumeType
       end
 
-      BlockDevicePropertyType = EBSBlockDevice
       BlockDevice = EBSBlockDevice
     end
-
-    AWSCloudFormationEC2BlockDevicePropertyType = EC2::EBSBlockDevice
-    AWSCloudFormationEC2BlockDevice = EC2::EBSBlockDevice
   end
 end

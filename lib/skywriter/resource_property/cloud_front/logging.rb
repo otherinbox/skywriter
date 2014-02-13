@@ -5,8 +5,6 @@ module Skywriter
         property :Bucket
         property :Prefix
       end
-
-      LoggingType = Logging
     end
   end
 end

@@ -6,11 +6,6 @@ module Skywriter
         property :Type
         property :Version
       end
-
-      EnvironmentTierPropertyType = EnvironmentTier
     end
-
-    AWSElasticBeanstalkEnvironmentTierPropertyType = ElasticBeanstalk::EnvironmentTier
-    AWSElasticBeanstalkEnvironmentTier = ElasticBeanstalk::EnvironmentTier
   end
 end

@@ -5,11 +5,6 @@ module Skywriter
         property :ApplicationName
         property :TemplateName
       end
-
-      SourceConfigurationPropertyType = SourceConfiguration
     end
-
-    AWSElasticBeanstalkSourceConfigurationPropertyType = ElasticBeanstalk::SourceConfiguration
-    AWSElasticBeanstalkSourceConfiguration = ElasticBeanstalk::SourceConfiguration
   end
 end

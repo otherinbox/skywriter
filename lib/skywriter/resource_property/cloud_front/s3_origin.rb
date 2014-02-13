@@ -4,8 +4,6 @@ module Skywriter
       class S3Origin < Skywriter::ResourceProperty
         property :OriginAccessIdentity
       end
-
-      S3OriginType = S3Origin
     end
   end
 end

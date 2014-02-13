@@ -8,8 +8,6 @@ module Skywriter
         property :ViewerProtocolPolicy
         property :MinTTL
       end
-      
-      DefaultCacheBehaviorType = DefaultCacheBehavior
     end
   end
 end

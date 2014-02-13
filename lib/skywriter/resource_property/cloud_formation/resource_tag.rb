@@ -6,11 +6,7 @@ module Skywriter
         property :Value
       end
 
-      ResourceTagsType = ResourceTag
       ResourceTags = ResourceTag
     end
-
-    AWSCloudFormationResourceTagsType = CloudFormation::ResourceTag
-    AWSCloudFormationResourceTags = CloudFormation::ResourceTag
   end
 end

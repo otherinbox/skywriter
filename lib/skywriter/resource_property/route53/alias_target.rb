@@ -5,8 +5,6 @@ module Skywriter
         property :HostedZoneId
         property :DNSName
       end
-
-      AliasTargetPropertyType = AliasTarget
     end
   end
 end

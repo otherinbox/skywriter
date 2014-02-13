@@ -6,8 +6,6 @@ module Skywriter
         property :HTTPSPort
         property :OriginProtocolPolicy
       end
-
-      CustomOriginType = CustomOrigin
     end
   end
 end

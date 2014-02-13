@@ -5,8 +5,6 @@ module Skywriter
         property :Endpoint
         property :Protocol
       end
-
-      SubscriptionPropertyType = Subscription
     end
   end
 end

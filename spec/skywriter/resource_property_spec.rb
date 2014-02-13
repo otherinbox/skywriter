@@ -74,7 +74,7 @@ describe Skywriter::ResourceProperty do
       Skywriter::ResourceProperty::CloudFormation::ResourceTag,
       Skywriter::ResourceProperty::RDS::SecurityGroupRule,
       Skywriter::ResourceProperty::Route53::AliasTarget,
-      Skywriter::ResourceProperty::S3::WebsiteConfigurationPolicy,
+      Skywriter::ResourceProperty::S3::WebsiteConfiguration,
       Skywriter::ResourceProperty::SNS::Subscription,
       Skywriter::ResourceProperty::SQS::RedrivePolicy,
     ].each do |klass|
