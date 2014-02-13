@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class Volume < Skywriter::Resource
+      class Volume
+        include Skywriter::Resource
+
         property :AvailabilityZone
         property :Iops
         property :Size

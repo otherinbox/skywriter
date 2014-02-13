@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module DynamoDB
-      class Table < Skywriter::Resource
+      class Table
+        include Skywriter::Resource
+
         property :AttributeDefinitions
         property :GlobalSecondaryIndexes
         property :KeySchema

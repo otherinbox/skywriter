@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module Redshift
-      class ClusterParameterGroup < Skywriter::Resource
+      class ClusterParameterGroup
+        include Skywriter::Resource
+
         property :Description
         property :ParameterGroupFamily
         property :Parameters

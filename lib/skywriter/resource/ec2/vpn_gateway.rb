@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPNGateway < Skywriter::Resource
+      class VPNGateway
+        include Skywriter::Resource
+
         property :Type
         property :Tags
       end

@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudFormation
-      class Stack < Skywriter::Resource
+      class Stack
+        include Skywriter::Resource
+
         property :TemplateURL
         property :TimeoutInMinutes
         property :Parameters

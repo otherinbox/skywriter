@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module RDS
-      class DBSubnetGroup < Skywriter::Resource
+      class DBSubnetGroup
+        include Skywriter::Resource
+
         property :DBSubnetGroupDescription
         property :SubnetIds
         property :Tags

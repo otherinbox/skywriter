@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module Route53
-      class RecordSetGroup < Skywriter::Resource
+      class RecordSetGroup
+        include Skywriter::Resource
+
         property :HostedZoneId
         property :HostedZoneName
         property :RecordSets

@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudWatch
-      class Alarm < Skywriter::Resource
+      class Alarm
+        include Skywriter::Resource
+
         property :ActionsEnabled
         property :AlarmActions
         property :AlarmDescription

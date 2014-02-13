@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module AutoScaling
-      class LaunchConfiguration < Skywriter::Resource
+      class LaunchConfiguration
+        include Skywriter::Resource
+
         property :AssociatePublicIpAddress
         property :BlockDeviceMappings
         property :EbsOptimized

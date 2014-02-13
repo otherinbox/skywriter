@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module S3
-      class BucketPolicy < Skywriter::Resource
+      class BucketPolicy
+        include Skywriter::Resource
+
         property :Bucket
         property :PolicyDocument
       end

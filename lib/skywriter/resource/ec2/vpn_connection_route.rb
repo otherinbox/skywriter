@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPNConnectionRoute < Skywriter::Resource
+      class VPNConnectionRoute
+        include Skywriter::Resource
+
         property :DestinationCidrBlock
         property :VpnConnectionId
       end

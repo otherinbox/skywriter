@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class Instance < Skywriter::Resource
+      class Instance
+        include Skywriter::Resource
+
         property :AvailabilityZone
         property :BlockDeviceMappings
         property :DisableApiTermination

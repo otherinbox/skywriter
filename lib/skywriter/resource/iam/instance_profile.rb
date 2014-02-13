@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module IAM
-      class InstanceProfile < Skywriter::Resource
+      class InstanceProfile
+        include Skywriter::Resource
+
         property :Path
         property :Roles
       end

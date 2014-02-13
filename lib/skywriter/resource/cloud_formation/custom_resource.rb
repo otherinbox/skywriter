@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudFormation
-      class CustomResource < Skywriter::Resource
+      class CustomResource
+        include Skywriter::Resource
+
         private
 
         def properties

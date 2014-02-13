@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class InternetGateway < Skywriter::Resource
+      class InternetGateway
+        include Skywriter::Resource
+
         property :Tags
       end
     end

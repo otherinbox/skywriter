@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class NetworkAcl < Skywriter::Resource
+      class NetworkAcl
+        include Skywriter::Resource
+
         property :Tags
         property :VpcId
       end

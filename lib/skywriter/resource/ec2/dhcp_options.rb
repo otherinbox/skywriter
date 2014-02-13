@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class DHCPOptions < Skywriter::Resource
+      class DHCPOptions
+        include Skywriter::Resource
+
         property :DomainName
         property :DomainNameServers
         property :NetbiosNameServers

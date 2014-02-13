@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPC < Skywriter::Resource
+      class VPC
+        include Skywriter::Resource
+
         property :CidrBlock
         property :EnableDnsSupport
         property :EnableDnsHostnames

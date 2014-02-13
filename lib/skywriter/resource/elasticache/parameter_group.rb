@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElastiCache
-      class ParameterGroup < Skywriter::Resource
+      class ParameterGroup
+        include Skywriter::Resource
+
         property :CacheParameterGroupFamily
         property :Description
         property :Properties    # Yeah, I know...

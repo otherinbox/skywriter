@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElastiCache
-      class SecurityGroup < Skywriter::Resource
+      class SecurityGroup
+        include Skywriter::Resource
+
         property :Description
       end
     end

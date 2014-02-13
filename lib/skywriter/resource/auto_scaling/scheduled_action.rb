@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module AutoScaling
-      class ScheduledAction < Skywriter::Resource
+      class ScheduledAction
+        include Skywriter::Resource
+
         property :AutoScalingGroupName
         property :DesiredCapacity
         property :EndTime

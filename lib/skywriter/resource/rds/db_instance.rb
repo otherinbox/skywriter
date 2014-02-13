@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module RDS
-      class DBInstance < Skywriter::Resource
+      class DBInstance
+        include Skywriter::Resource
+
         property :AllocatedStorage
         property :AutoMinorVersionUpgrade
         property :AvailabilityZone

@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElasticBeanstalk
-      class ConfigurationTemplate < Skywriter::Resource
+      class ConfigurationTemplate
+        include Skywriter::Resource
+
         property :ApplicationName
         property :Description
         property :EnvironmentId

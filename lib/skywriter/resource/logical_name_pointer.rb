@@ -1,5 +1,5 @@
 module Skywriter
-  class Resource
+  module Resource
     class LogicalNamePointer < Pointer
       private
 

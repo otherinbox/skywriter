@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElasticLoadBalancing
-      class LoadBalancer < Skywriter::Resource
+      class LoadBalancer
+        include Skywriter::Resource
+
         property :AppCookieStickinessPolicy
         property :AvailabilityZones
         property :CrossZone

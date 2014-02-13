@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VolumeAttachment < Skywriter::Resource
+      class VolumeAttachment
+        include Skywriter::Resource
+
         property :Device
         property :InstanceId
         property :VolumeId

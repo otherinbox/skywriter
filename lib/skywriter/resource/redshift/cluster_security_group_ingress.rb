@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module Redshift
-      class ClusterSecurityGroupIngress < Skywriter::Resource
+      class ClusterSecurityGroupIngress
+        include Skywriter::Resource
+
         property :ClusterSecurityGroupName
         property :CIDRIP
         property :EC2SecurityGroupName

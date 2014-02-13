@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPNGatewayRoutePropagation < Skywriter::Resource
+      class VPNGatewayRoutePropagation
+        include Skywriter::Resource
+
         property :RouteTableIds
         property :VpnGatewayId
       end

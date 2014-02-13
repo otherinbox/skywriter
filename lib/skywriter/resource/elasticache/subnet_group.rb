@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElastiCache
-      class SubnetGroup < Skywriter::Resource
+      class SubnetGroup
+        include Skywriter::Resource
+
         property :Description
         property :SubnetIds
       end

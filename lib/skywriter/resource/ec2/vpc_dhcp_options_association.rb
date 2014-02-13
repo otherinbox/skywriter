@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPCDHCPOptionsAssociation < Skywriter::Resource
+      class VPCDHCPOptionsAssociation
+        include Skywriter::Resource
+
         property :DhcpOptionsId
         property :VpcId
       end

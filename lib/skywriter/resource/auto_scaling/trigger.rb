@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module AutoScaling
-      class Trigger < Skywriter::Resource
+      class Trigger
+        include Skywriter::Resource
+
         property :AutoScalingGroupName
         property :BreachDuration
         property :Dimensions

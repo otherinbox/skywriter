@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module Redshift
-      class Cluster < Skywriter::Resource
+      class Cluster
+        include Skywriter::Resource
+
         property :AllowVersionUpgrade
         property :AutomatedSnapshotRetentionPeriod
         property :AvailabilityZone

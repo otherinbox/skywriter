@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module RDS
-      class DBParameterGroup < Skywriter::Resource
+      class DBParameterGroup
+        include Skywriter::Resource
+
         property :Description
         property :Family
         property :Parameters

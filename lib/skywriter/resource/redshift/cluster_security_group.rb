@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module Redshift
-      class ClusterSecurityGroup < Skywriter::Resource
+      class ClusterSecurityGroup
+        include Skywriter::Resource
+
         property :Description
       end
     end

@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class NetworkInterface < Skywriter::Resource
+      class NetworkInterface
+        include Skywriter::Resource
+
         property :Description
         property :GroupSet
         property :PrivateIpAddress

@@ -1,5 +1,5 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
       class SecurityGroupEgress < Skywriter::ResourceProperty::EC2::SecurityGroupRule
         property :DestinationSecurityGroupId
