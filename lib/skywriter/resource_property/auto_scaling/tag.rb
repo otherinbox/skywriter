@@ -7,6 +7,9 @@ module Skywriter
         property :PropagateAtLaunch
       end
     end
+
+    Tags = Tag
+
   end
 end
 

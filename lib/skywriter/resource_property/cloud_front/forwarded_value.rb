@@ -5,6 +5,9 @@ imodule Skywriter
         property :QueryString
       end
     end
+
+    ForwardedValues = ForwardedValue
+
   end
 end
 
