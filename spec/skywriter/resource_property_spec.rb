@@ -37,6 +37,13 @@ end
 
 describe "The implementation" do
   [
+    Skywriter::ResourceProperty::AutoScaling::BlockDeviceMapping,
+    Skywriter::ResourceProperty::AutoScaling::EBSBlockDevice,
+    Skywriter::ResourceProperty::AutoScaling::NotificationConfiguration,
+    Skywriter::ResourceProperty::AutoScaling::Tag,
+    Skywriter::ResourceProperty::AutoScaling::EBSBlockDevice,
+    Skywriter::ResourceProperty::CloudFront::CacheBehavior,
+    Skywriter::ResourceProperty::CloudFront::ForwardedValue,
     Skywriter::ResourceProperty::CloudFront::CustomOrigin,
     Skywriter::ResourceProperty::CloudFront::DefaultCacheBehavior,
     Skywriter::ResourceProperty::CloudFront::DistributionConfig,
