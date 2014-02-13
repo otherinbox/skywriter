@@ -1,6 +1,6 @@
 module Skywriter
   class Template
-    class ConversionError < StandardError; end
+    class MergeError < StandardError; end
 
     attr_reader :format_version, :description, :resources
 
@@ -31,7 +31,7 @@ module Skywriter
     def merge_disjoint_keys_and_duplicated_values(hashes)
       hashes.reduce({}) do |memo, hash|
         memo.merge(hash) do |key, old, new|
-          raise ConversionError, "Duplicate key '#{key}' has different values" unless old == new
+          raise MergeError, "Duplicate key '#{key}' has different values" unless old == new
           old
         end
       end
