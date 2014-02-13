@@ -5,6 +5,8 @@ module Skywriter
         property :CookieExpirationPeriod
         property :PolicyName
       end
+
+      LBCookieStickinessPolicyType = LBCookieStickinessPolicy
     end
   end
 end

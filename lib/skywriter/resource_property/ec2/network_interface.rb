@@ -13,6 +13,8 @@ module Skywriter
         property :SecondaryPrivateIpAddressCount
         property :SubnetId
       end
+
+      NetworkInterfaceEmbeddedPropertyType = NetworkInterface
     end
   end
 end

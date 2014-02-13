@@ -6,5 +6,7 @@ module Skywriter
         property :maxReceiveCount
       end
     end
+
+    AmazonSQSRedrivePolicy = SQS::RedrivePolicy
   end
 end

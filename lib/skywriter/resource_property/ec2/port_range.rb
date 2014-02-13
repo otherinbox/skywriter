@@ -5,6 +5,8 @@ module Skywriter
         property :From
         property :To
       end
+
+      PortRangePropertyType = PortRange
     end
   end
 end

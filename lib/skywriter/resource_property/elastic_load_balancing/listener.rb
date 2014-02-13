@@ -9,6 +9,8 @@ module Skywriter
         property :Protocol
         property :SSLCertificateId
       end
+
+      ListenerPropertyType = Listener
     end
   end
 end

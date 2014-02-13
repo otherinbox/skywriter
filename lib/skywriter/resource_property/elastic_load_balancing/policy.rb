@@ -8,6 +8,8 @@ module Skywriter
         property :PolicyName
         property :PolicyType
       end
+
+      PolicyType = Policy
     end
   end
 end

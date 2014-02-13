@@ -5,6 +5,8 @@ module Skywriter
         property :NonKeyAttributes
         property :ProjectionType
       end
+
+      ProjectionObject = Projection
     end
   end
 end

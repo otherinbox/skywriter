@@ -7,6 +7,8 @@ module Skywriter
         property :Projection
         property :ProvisionedThroughput
       end
+
+      GlobalSecondaryIndexes = GlobalSecondaryIndex
     end
   end
 end

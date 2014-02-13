@@ -5,6 +5,8 @@ module Skywriter
         property :Device
         property :VolumeId
       end
+
+      MountPointPropertyType = MountPoint
     end
   end
 end

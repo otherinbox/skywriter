@@ -5,6 +5,8 @@ module Skywriter
         property :AttributeName
         property :AttributeType
       end
+
+      AttributeDefinitions = AttributeDefinition
     end
   end
 end

@@ -15,6 +15,8 @@ module Skywriter
         # Egresses
         property :DestinationSecurityGroupId
       end
+
+      SecurityGroupRulePropertyType = SecurityGroupRule
     end
   end
 end

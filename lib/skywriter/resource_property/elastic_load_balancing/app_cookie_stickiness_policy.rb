@@ -5,6 +5,11 @@ module Skywriter
         property :CookieName
         property :PolicyName
       end
+
+      AppCookieStickinessPolicyType = AppCookieStickinessPolicy
     end
+
+    AppCookieStickinessPolicyType = ElasticLoadBalancing::AppCookieStickinessPolicy
+    AppCookieStickiness = ElasticLoadBalancing::AppCookieStickinessPolicy
   end
 end

@@ -5,6 +5,8 @@ module Skywriter
         property :Name
         property :Value
       end
+
+      MetricDimensionPropertyType = MetricDimension
     end
   end
 end

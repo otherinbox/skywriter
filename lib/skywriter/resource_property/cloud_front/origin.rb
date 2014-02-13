@@ -7,6 +7,8 @@ module Skywriter
         property :S3OriginConfig
         property :CustomOriginConfig
       end
+
+      OriginType = Origin
     end
   end
 end

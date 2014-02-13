@@ -11,6 +11,8 @@ module Skywriter
         property :Logging
         property :Origins
       end
+
+     DistributionConfigType = DistributionConfig
     end
   end
 end

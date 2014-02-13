@@ -8,6 +8,8 @@ module Skywriter
         property :Timeout
         property :UnhealthyThreshold
       end
+
+      HealthCheckType = HealthCheck
     end
   end
 end
