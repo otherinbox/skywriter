@@ -8,6 +8,9 @@ module Skywriter
         property :VolumeSize
         property :VolumeType
       end
+
+    BlockDevice = EBSBlockDevice
+
     end
   end
 end
