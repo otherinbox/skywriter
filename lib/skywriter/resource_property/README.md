@@ -39,7 +39,7 @@ EC2 PortRange Property Type | *::EC2::PortRange | dropped 'Type'
 EC2 Security Group Rule Property Type | *::EC2::SecurityGroupRule | dropped 'Type' 
 EC2 Tag | *::EC2::Tag | 
 AWS Elastic Beanstalk Environment Tier Property Type | *::ElasticBeanstalk::EnvironmentTier | dropped 'Property Type' 
-AWS Elastic Beanstalk OptionSettings Property Type | *::ElasticBeanstalk::OptionSettings | dropped 'Property Type' 
+AWS Elastic Beanstalk OptionSettings Property Type | *::ElasticBeanstalk::OptionSetting | dropped 'Property Type', made singular
 AWS Elastic Beanstalk SourceBundle Property Type | *::ElasticBeanstalk::SourceBundle | dropped 'Property Type' 
 AWS Elastic Beanstalk SourceConfiguration Property Type | *::ElasticBeanstalk::SourceConfiguration | dropped 'Property Type' 
 ElasticLoadBalancing AppCookieStickinessPolicy Type | *::ElasticLoadBalancing::AppCookieStickinessPolicy | dropped 'Type' 
@@ -49,7 +49,7 @@ ElasticLoadBalancing Listener Property Type | *::ElasticLoadBalancing::Listener 
 ElasticLoadBalancing Policy Type | *::ElasticLoadBalancing::Policy | dropped 'Type' 
 Name Type | | 
 Amazon Redshift Parameter Type | *::Redshift::Parameter | dropped 'Type' 
-AWS CloudFormation Resource Tags Type | *::CloudFormation::ResourceTags | dropped 'Type' 
+AWS CloudFormation Resource Tags Type | *::CloudFormation::ResourceTag | dropped 'Type', made singular
 RDS Security Group Rule | *::RDS::SecurityGroupRule | 
 Route 53 AliasTarget Property Type | *::Route53::AliasTarget | dropped 'Property Type' 
 AWS CloudFormation Website Configuration Property Type | *::S3::WebsiteConfigurationPolicy | dropped 'Property Type', inferred namespace 

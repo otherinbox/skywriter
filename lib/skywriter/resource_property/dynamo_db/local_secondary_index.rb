@@ -6,6 +6,8 @@ module Skywriter
         property :KeySchema
         property :Projection
       end
+
+      LocalSecondaryIndexes = LocalSecondaryIndex
     end
   end
 end

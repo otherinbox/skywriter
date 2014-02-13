@@ -1,10 +1,12 @@
 module Skywriter
   class ResourceProperty
     module CloudFormation
-      class ResourceTags < Skywriter::ResourceProperty
+      class ResourceTag < Skywriter::ResourceProperty
         property :Key
         property :Value
       end
+
+      ResourceTags = ResourceTag
     end
   end
 end
