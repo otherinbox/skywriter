@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module SQS
-      class Queue < Skywriter::Resource
+      class Queue
+        include Skywriter::Resource
+
         property :DelaySeconds
         property :MaximumMessageSize
         property :MessageRetentionPeriod

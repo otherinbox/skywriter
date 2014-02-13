@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudFormation
-      class WaitCondition < Skywriter::Resource
+      class WaitCondition
+        include Skywriter::Resource
+
         property :Count
         property :Handle
         property :Timeout

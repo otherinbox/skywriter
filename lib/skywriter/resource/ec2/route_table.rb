@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class RouteTable < Skywriter::Resource
+      class RouteTable
+        include Skywriter::Resource
+
         property :VpcId
         property :Tags
       end

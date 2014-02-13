@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPCGatewayAttachment < Skywriter::Resource
+      class VPCGatewayAttachment
+        include Skywriter::Resource
+
         property :InternetGatewayId
         property :VpcId
         property :VpnGatewayId

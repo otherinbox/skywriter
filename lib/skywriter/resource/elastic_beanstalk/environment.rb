@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElasticBeanstalk
-      class Environment < Skywriter::Resource
+      class Environment
+        include Skywriter::Resource
+
         property :ApplicationName
         property :CNAMEPrefix
         property :Description

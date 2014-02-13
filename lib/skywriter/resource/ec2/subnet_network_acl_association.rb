@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class SubnetNetworkAclAssociation < Skywriter::Resource
+      class SubnetNetworkAclAssociation
+        include Skywriter::Resource
+
         property :SubnetId
         property :NetworkAclId
       end

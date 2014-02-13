@@ -1,5 +1,5 @@
 module Skywriter
-  class Resource
+  module Resource
     class Pointer
       attr_reader :resource
 

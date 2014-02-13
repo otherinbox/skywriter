@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module IAM
-      class Role < Skywriter::Resource
+      class Role
+        include Skywriter::Resource
+
       end
     end
   end

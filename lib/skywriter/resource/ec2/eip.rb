@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class EIP < Skywriter::Resource
+      class EIP
+        include Skywriter::Resource
+
         property :InstanceId
         property :Domain
       end

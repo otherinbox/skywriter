@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module AutoScaling
-      class ScalingPolicy < Skywriter::Resource
+      class ScalingPolicy
+        include Skywriter::Resource
+
         property :AdjustmentType
         property :AutoScalingGroupName
         property :Cooldown

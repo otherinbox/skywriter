@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudFront
-      class Distribution < Skywriter::Resource
+      class Distribution
+        include Skywriter::Resource
+
         property :DistributionConfig
       end
     end

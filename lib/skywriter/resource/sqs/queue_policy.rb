@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module SQS
-      class QueuePolicy < Skywriter::Resource
+      class QueuePolicy
+        include Skywriter::Resource
+
         property :PolicyDocument
         property :Queues
       end

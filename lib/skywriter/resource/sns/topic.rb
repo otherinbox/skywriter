@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module SNS
-      class Topic < Skywriter::Resource
+      class Topic
+        include Skywriter::Resource
+
         property :DisplayName
         property :Subscription
         property :TopicName

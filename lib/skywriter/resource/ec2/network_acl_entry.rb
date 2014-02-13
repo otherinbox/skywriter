@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class NetworkAclEntry < Skywriter::Resource
+      class NetworkAclEntry
+        include Skywriter::Resource
+
         property :CidrBlock
         property :Egress
         property :Icmp

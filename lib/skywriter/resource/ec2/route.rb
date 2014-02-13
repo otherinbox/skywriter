@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class Route < Skywriter::Resource
+      class Route
+        include Skywriter::Resource
+
         property :DestinationCidrBlock
         property :GatewayId
         property :InstanceId

@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module IAM
-      class AccessKey < Skywriter::Resource
+      class AccessKey
+        include Skywriter::Resource
+
         property :Serial
         property :Status
         property :UserName

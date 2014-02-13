@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudFormation
-      class Authentication < Skywriter::Resource
+      class Authentication
+        include Skywriter::Resource
+
         property :accessKeyId
         property :buckets
         property :password

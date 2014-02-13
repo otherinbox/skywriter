@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class Subnet < Skywriter::Resource
+      class Subnet
+        include Skywriter::Resource
+
         property :AvailabilityZone
         property :CidrBlock
         property :Tags

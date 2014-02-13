@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class CustomerGateway < Skywriter::Resource
+      class CustomerGateway
+        include Skywriter::Resource
+
         property :BgpAsn
         property :IpAddress
         property :Tags

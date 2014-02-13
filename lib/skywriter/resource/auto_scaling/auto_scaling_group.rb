@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module AutoScaling
-      class AutoScalingGroup < Skywriter::Resource
+      class AutoScalingGroup
+        include Skywriter::Resource
+
         property :AvailabilityZones
         property :Cooldown
         property :DesiredCapacity

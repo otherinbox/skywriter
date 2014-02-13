@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module SNS
-      class TopicPolicy < Skywriter::Resource
+      class TopicPolicy
+        include Skywriter::Resource
+
         property :PolicyDocument
         property :Topics
       end

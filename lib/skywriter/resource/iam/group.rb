@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module IAM
-      class Group < Skywriter::Resource
+      class Group
+        include Skywriter::Resource
+
         property :Path
         property :Policies
       end

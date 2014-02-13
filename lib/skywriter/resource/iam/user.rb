@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module IAM
-      class User < Skywriter::Resource
+      class User
+        include Skywriter::Resource
+
         property :Path
         property :Groups
         property :LoginProfile

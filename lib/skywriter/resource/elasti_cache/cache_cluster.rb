@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module ElastiCache
-      class CacheCluster < Skywriter::Resource
+      class CacheCluster
+        include Skywriter::Resource
+
         property :AutoMinorVersionUpgrade
         property :CacheNodeType
         property :CacheParameterGroupName

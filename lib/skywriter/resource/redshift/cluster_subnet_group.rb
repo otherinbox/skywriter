@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module Redshift
-      class ClusterSubnetGroup < Skywriter::Resource
+      class ClusterSubnetGroup
+        include Skywriter::Resource
+
         property :Description
         property :SubnetIds 
       end

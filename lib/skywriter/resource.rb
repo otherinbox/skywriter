@@ -1,7 +1,32 @@
 module Skywriter
-  class Resource
-    def self.property(name, **options)
-      property_definitions << PropertyDefinition.new(name, options)
+  module Resource
+    module DSL
+      def property(name, **options)
+        property_definitions << PropertyDefinition.new(name, options)
+      end
+
+      def property_definitions
+        @property_definitions ||= []
+      end
+
+      private
+
+      def self.extended(base)
+        type_name = base.name.gsub("Skywriter::Resource", "AWS")
+
+        base.send(:define_method, :type) do 
+          type_name
+        end
+      end
+
+      class PropertyDefinition
+        attr_reader :name, :key
+
+        def initialize(name, **options)
+          @name = name.to_s
+          @key = name.to_s.underscore.to_sym
+        end
+      end
     end
 
     attr_reader :logical_name
@@ -29,10 +54,6 @@ module Skywriter
       as_json.to_json
     end
 
-    def type
-      @type ||= self.class.name.gsub("Skywriter::Resource", "AWS")
-    end
-
     # @param with [:ref, :logical_name] How this pointer should be 
     #   rendered in JSON.  Use `:ref` to generate {"Ref": "foo"},
     #   and `:logical_name` to generate "foo"
@@ -55,6 +76,10 @@ module Skywriter
 
     attr_reader :options
 
+    def self.included(base)
+      base.extend(DSL)
+    end
+
     def all_dependencies
       (additional_dependencies + magical_dependencies).to_a
     end
@@ -75,21 +100,8 @@ module Skywriter
       end
     end
 
-    def self.property_definitions
-      @property_definitions ||= []
-    end
-
     def property_definitions
       self.class.property_definitions
-    end
-  end
-
-  class PropertyDefinition
-    attr_reader :name, :key
-
-    def initialize(name, **options)
-      @name = name.to_s
-      @key = name.to_s.underscore.to_sym
     end
   end
 end

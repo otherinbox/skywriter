@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module SDB
-      class Domain < Skywriter::Resource
+      class Domain
+        include Skywriter::Resource
+
       end
     end
   end

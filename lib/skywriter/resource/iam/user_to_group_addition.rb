@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module IAM
-      class UserToGroupAddition < Skywriter::Resource
+      class UserToGroupAddition
+        include Skywriter::Resource
+
         property :GroupName
         property :Users
       end

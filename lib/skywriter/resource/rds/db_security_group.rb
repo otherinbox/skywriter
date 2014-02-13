@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module RDS
-      class DBSecurityGroup < Skywriter::Resource
+      class DBSecurityGroup
+        include Skywriter::Resource
+
         property :EC2VpcId
         property :DBSecurityGroupIngress
         property :GroupDescription

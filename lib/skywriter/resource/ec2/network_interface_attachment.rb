@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class NetworkInterfaceAttachment < Skywriter::Resource
+      class NetworkInterfaceAttachment
+        include Skywriter::Resource
+
         property :DeleteOnTermination
         property :DeviceIndex
         property :InstanceId

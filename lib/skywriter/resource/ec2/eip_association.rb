@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class EIPAssociation < Skywriter::Resource
+      class EIPAssociation
+        include Skywriter::Resource
+
         property :AllocationId
         property :EIP
         property :InstanceId

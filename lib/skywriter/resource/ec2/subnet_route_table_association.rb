@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class SubnetRouteTableAssociation < Skywriter::Resource
+      class SubnetRouteTableAssociation
+        include Skywriter::Resource
+
         property :RouteTableId
         property :SubnetId
       end

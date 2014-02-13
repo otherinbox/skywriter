@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module CloudFormation
-      class WaitConditionHandle < Skywriter::Resource
+      class WaitConditionHandle
+        include Skywriter::Resource
+
       end
     end
   end

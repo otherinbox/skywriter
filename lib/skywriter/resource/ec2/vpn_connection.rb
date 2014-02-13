@@ -1,7 +1,9 @@
 module Skywriter
-  class Resource
+  module Resource
     module EC2
-      class VPNConnection < Skywriter::Resource
+      class VPNConnection
+        include Skywriter::Resource
+
         property :Type
         property :CustomerGatewayId
         property :StaticRoutesOnly
