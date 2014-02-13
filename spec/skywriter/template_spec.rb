@@ -39,8 +39,8 @@ describe Skywriter::Template do
       let(:template) { Skywriter::Template.new(:format_version => 'foo') }
       let(:hash) { template.as_json }
 
-      it "has a FormatVersion key" do
-        expect(hash).to have_key('FormatVersion')
+      it "has the passed FormatVersion value" do
+        expect(hash['FormatVersion']).to eq('foo')
       end
     end
 
@@ -53,7 +53,7 @@ describe Skywriter::Template do
       end
     end
 
-    context "with resources" do
+    context "with array of Resources" do
       let(:resource) do
         double("Resource", as_json: {"Resource" => {}})
       end
@@ -73,6 +73,18 @@ describe Skywriter::Template do
       it "includes resources" do
         expect(hash['Resources']).to have_key('Resource')
         expect(hash['Resources']).to have_key('OtherResource')
+      end
+    end
+
+    context "with resources hash" do
+      let(:template) do
+        Skywriter::Template.new(
+          resources: {"foo" => "bar"}
+        )
+      end
+
+      it "includes resources hash" do
+        expect(template.as_json['Resources']).to eq("foo" => "bar")
       end
     end
   end
