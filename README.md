@@ -1,5 +1,6 @@
 # Skywriter
 [![Build Status](https://travis-ci.org/otherinbox/skywriter.png?branch=master)](https://travis-ci.org/otherinbox/skywriter)
+[![Code Climate](https://codeclimate.com/github/otherinbox/skywriter.png)](https://codeclimate.com/github/otherinbox/skywriter)
 
 Skywriter makes writing CloudFormation templates easier.
 
