@@ -4,7 +4,7 @@ module Skywriter
       private
 
       def json_fragment
-        { "Ref" => resource.logical_name }
+        Skywriter::Function.ref(resource.logical_name)
       end
     end
   end
