@@ -52,7 +52,7 @@ Amazon Redshift Parameter Type | *::Redshift::Parameter | dropped 'Type'
 AWS CloudFormation Resource Tags Type | *::CloudFormation::ResourceTag | dropped 'Type', made singular
 RDS Security Group Rule | *::RDS::SecurityGroupRule | 
 Route 53 AliasTarget Property Type | *::Route53::AliasTarget | dropped 'Property Type' 
-AWS CloudFormation Website Configuration Property Type | *::S3::WebsiteConfigurationPolicy | dropped 'Property Type', inferred namespace 
+AWS CloudFormation Website Configuration Property Type | *::S3::WebsiteConfiguration | dropped 'Property Type', inferred namespace 
 SNS Subscription Property Type | *::SNS::Subscription | dropped 'Property Type' 
 Amazon SQS RedrivePolicy | *::SQS::RedrivePolicy | 
 
