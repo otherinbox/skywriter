@@ -25,6 +25,10 @@ module Skywriter
       Thread.current[:skywriter_as_json_context] = nil
     end
 
+    def to_json(*)
+      as_json.to_json
+    end
+
     def type
       @type ||= self.class.name.gsub("Skywriter::Resource", "AWS")
     end

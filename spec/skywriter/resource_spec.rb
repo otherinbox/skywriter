@@ -37,7 +37,7 @@ describe Skywriter::Resource do
 
       expect(resource.as_json['resource name']['DependsOn']).to include('reference')
     end
-    
+
     it "merges magical and additional depedencies" do
       reference = resource_class.new('reference')
       resource = resource_class.new('resource name', foo_bar: reference.as_pointer, additional_dependencies: ['depends on'])
@@ -85,6 +85,54 @@ describe Skywriter::Resource do
 
       it "returns a logical name" do
         expect(subject).to be_a(Skywriter::Resource::LogicalNamePointer)
+      end
+    end
+  end
+end
+
+describe "The implementation" do
+  [
+    Skywriter::Resource::AutoScaling::AutoScalingGroup,
+    Skywriter::Resource::AutoScaling::LaunchConfiguration,
+    Skywriter::Resource::AutoScaling::ScalingPolicy,
+    Skywriter::Resource::AutoScaling::ScheduledAction,
+    Skywriter::Resource::AutoScaling::Trigger,
+    Skywriter::Resource::CloudFormation::Stack,
+    Skywriter::Resource::CloudFormation::WaitConditionHandle,
+    Skywriter::Resource::CloudFormation::WaitCondition,
+    Skywriter::Resource::CloudFront::Distribution,
+    Skywriter::Resource::CloudWatch::Alarm,
+    Skywriter::Resource::DynamoDB::Table,
+    Skywriter::Resource::EC2::CustomerGateway,
+    Skywriter::Resource::EC2::DHCPOptions,
+    Skywriter::Resource::EC2::EIPAssociation,
+    Skywriter::Resource::EC2::EIP,
+    Skywriter::Resource::EC2::Instance,
+    Skywriter::Resource::EC2::InternetGateway,
+    Skywriter::Resource::EC2::NetworkAclEntry,
+    Skywriter::Resource::EC2::NetworkAcl,
+    Skywriter::Resource::EC2::NetworkInterfaceAttachment,
+    Skywriter::Resource::EC2::NetworkInterface,
+    Skywriter::Resource::EC2::Route,
+    Skywriter::Resource::EC2::RouteTable,
+    Skywriter::Resource::EC2::SecurityGroup,
+    Skywriter::Resource::EC2::SubnetNetworkAclAssociation,
+    Skywriter::Resource::EC2::SubnetRouteTableAssociation,
+    Skywriter::Resource::EC2::Subnet,
+    Skywriter::Resource::EC2::VolumeAttachment,
+    Skywriter::Resource::EC2::Volume,
+    Skywriter::Resource::EC2::VPCDHCPOptionsAssociation,
+    Skywriter::Resource::EC2::VPCGatewayAttachment,
+    Skywriter::Resource::EC2::VPC,
+    Skywriter::Resource::EC2::VPNConnectionRoute,
+    Skywriter::Resource::EC2::VPNConnection,
+    Skywriter::Resource::EC2::VPNGatewayRoutePropagation,
+    Skywriter::Resource::EC2::VPNGateway,
+    Skywriter::Resource::ElastiCache::CacheCluster,
+  ].each do |klass|
+    context "of #{klass.name}" do
+      it "is a resource" do
+        expect(klass.new('name')).to be_a(Skywriter::Resource)
       end
     end
   end
