@@ -9,6 +9,12 @@ describe Skywriter::Resource do
     end
     Skywriter::Resource::TestResource
   end
+  
+  let(:child_class) do
+    class ChildClass < resource_class; end
+    ChildClass
+  end
+
 
   describe "#as_json" do
     it "serializes literal property values" do
@@ -19,6 +25,12 @@ describe Skywriter::Resource do
 
     it "sets type" do
       resource = resource_class.new('resource name', foo_bar: 'value')
+
+      expect(resource.as_json['resource name']['Type']).to eq("AWS::TestResource")
+    end
+
+    it "sets type correctly in child classes" do
+      resource = child_class.new('resource name', foo_bar: 'value')
 
       expect(resource.as_json['resource name']['Type']).to eq("AWS::TestResource")
     end

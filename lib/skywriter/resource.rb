@@ -9,6 +9,16 @@ module Skywriter
         @property_definitions ||= []
       end
 
+      private
+
+      def self.extended(base)
+        type_name = base.name.gsub("Skywriter::Resource", "AWS")
+
+        base.send(:define_method, :type) do 
+          type_name
+        end
+      end
+
       class PropertyDefinition
         attr_reader :name, :key
 
@@ -42,10 +52,6 @@ module Skywriter
 
     def to_json(*)
       as_json.to_json
-    end
-
-    def type
-      @type ||= self.class.name.gsub("Skywriter::Resource", "AWS")
     end
 
     # @param with [:ref, :logical_name] How this pointer should be 
