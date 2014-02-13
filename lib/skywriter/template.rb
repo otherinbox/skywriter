@@ -20,7 +20,7 @@ module Skywriter
     class MergeError < StandardError; end
 
     attr_reader :format_version, :description
-    attr_reader :parameters, :mappings, :conditions, :resources, :output
+    attr_reader :parameters, :mappings, :conditions, :resources, :outputs
 
     # Constructor
     #
@@ -37,7 +37,7 @@ module Skywriter
     #   Skywriter::Resource, for example Skywriter::Resource::EC2::Instance.
     # @param outputs [Hash] A hash of outputs
     def initialize(options = {})
-      @format_version   = options[:format_version].freeze
+      @format_version   = (options[:format_version] || '2010-09-09').freeze
       @description      = options[:description].freeze
 
       @parameters       = (options[:parameters] || {}).freeze

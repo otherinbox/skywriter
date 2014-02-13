@@ -6,8 +6,8 @@ describe Skywriter::Template do
       let(:template) { Skywriter::Template.new }
       let(:hash) { template.as_json }
 
-      it "does not have a FormatVersion key" do
-        expect(hash).to_not have_key('FormatVersion')
+      it "uses default FormatVersion value" do
+        expect(hash['FormatVersion']).to eq('2010-09-09')
       end
 
       it "does not have a Description key" do
