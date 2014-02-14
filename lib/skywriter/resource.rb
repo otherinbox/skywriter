@@ -31,7 +31,7 @@ module Skywriter
 
     attr_reader :logical_name
 
-    def initialize(logical_name, **options)
+    def initialize(logical_name, options = {})
       @logical_name = logical_name
       @options = options.freeze
     end
@@ -94,10 +94,17 @@ module Skywriter
 
     def properties
       @properties ||= property_definitions.each_with_object({}) do |property_definition, hash|
-        if (value = options[property_definition.key])
+        if (value = property_value(property_definition))
           hash[property_definition.name] = value
         end
       end
+    end
+
+    def property_value(property_definition)
+      options[property_definition.key] ||
+        options[property_definition.name.to_sym] ||
+        options[property_definition.key.to_s] ||
+        options[property_definition.name]
     end
 
     def property_definitions
