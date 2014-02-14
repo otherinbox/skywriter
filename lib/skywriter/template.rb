@@ -40,11 +40,11 @@ module Skywriter
       @format_version   = (options[:format_version] || '2010-09-09').freeze
       @description      = options[:description].freeze
 
-      @parameters       = (options[:parameters] || {}).freeze
-      @mappings         = (options[:mappings] || {}).freeze
-      @conditions       = (options[:conditions] || {}).freeze
-      @resources        = (options[:resources] || {}).freeze
-      @outputs          = (options[:outputs] || {}).freeze
+      @parameters       = (options[:parameters] || {}).as_json.freeze
+      @mappings         = (options[:mappings] || {}).as_json.freeze
+      @conditions       = (options[:conditions] || {}).as_json.freeze
+      @resources        = resources_as_json(options[:resources]).freeze
+      @outputs          = (options[:outputs] || {}).as_json.freeze
     end
 
     # Returns a hash representing the Template
@@ -53,23 +53,79 @@ module Skywriter
       {
         'FormatVersion' => format_version,
         'Description'   => description,
-        'Parameters'    => parameters.as_json,
-        'Mappings'      => mappings.as_json,
-        'Conditions'    => conditions.as_json,
-        'Resources'     => resources_as_json,
-        'Outputs'       => outputs.as_json,
+        'Parameters'    => parameters,
+        'Mappings'      => mappings,
+        'Conditions'    => conditions,
+        'Resources'     => resources,
+        'Outputs'       => outputs,
 
       }.reject { |key, value| value.nil? }
     end
 
+    def merge(other)
+      dup.merge!(other)
+    end
+
+    protected
+
+    def merge!(other)
+      case other
+      when Skywriter::Template
+        merge_value!(:format_version, other.format_version)
+        merge_value!(:description, other.description)
+
+        merge_hash!(:parameters, other.parameters)
+        merge_hash!(:mappings, other.mappings)
+        merge_hash!(:conditions, other.conditions)
+        merge_hash!(:resources, other.resources)
+        merge_hash!(:outputs, other.outputs)
+
+      when Hash
+        merge_value!(:format_version, other['FormatVersion'])
+        merge_value!(:description, other['Description'])
+
+        merge_hash!(:parameters, other['Parameters'] || {})
+        merge_hash!(:mappings, other['Mappings'] || {})
+        merge_hash!(:conditions, other['Conditions'] || {})
+        merge_hash!(:resources, other['Resources'] || {})
+        merge_hash!(:outputs, other['Outputs'] || {})
+
+      else
+        raise ArgumentError, "Don't know how to merge with a #{other.class.name}"
+      end
+
+      self
+    end
+
     private
 
-    def resources_as_json
-      case resources
+    def merge_value!(attribute, other_value)
+      self_value = send(attribute)
+
+      raise MergeError, "Duplicate attribute '#{attribute}' found" if self_value && (self_value != other_value)
+
+      instance_variable_set("@#{attribute}", other_value)
+    end
+
+    def merge_hash!(attribute, other_value)
+      self_value = send(attribute)
+
+      new_hash = self_value.merge(other_value) do |key, old, new|
+        raise MergeError, "Duplicate key '#{key}' found with different value in attribute '#{attribute}'" if old != new
+        old
+      end.freeze
+
+      instance_variable_set("@#{attribute}", new_hash)
+    end
+
+    def resources_as_json(resources_option = nil)
+      case resources_option
       when Array
-        merge_disjoint_keys_and_duplicated_values(resources.map(&:as_json))
+        merge_disjoint_keys_and_duplicated_values(resources_option.map(&:as_json))
+      when Hash
+        resources_option.as_json
       else
-        resources.as_json
+        {}
       end
     end
 

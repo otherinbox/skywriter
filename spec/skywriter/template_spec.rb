@@ -88,4 +88,145 @@ describe Skywriter::Template do
       end
     end
   end
+
+  describe "#merge" do
+    let(:resource) do
+      double("Resource", as_json: {'foo' => 'bar'})
+    end
+
+    let(:other_resource) do
+      double("OtherResource", as_json: {'baz' => 'qux'})
+    end
+
+    let(:conflicting_resource) do
+      double("ConflictingResource", as_json: {'foo' => 'not bar'})
+    end
+
+    let(:template) do
+      Skywriter::Template.new(
+        parameters: {'foo' => 'bar'},
+        mappings: {'foo' => 'bar'},
+        conditions: {'foo' => 'bar'},
+        resources: [resource],
+        outputs: {'foo' => 'bar'},
+      )
+    end
+
+    let(:disjoint_template) do
+      Skywriter::Template.new(
+        parameters: {'baz' => 'qux'},
+        mappings: {'baz' => 'qux'},
+        conditions: {'baz' => 'qux'},
+        resources: [other_resource],
+        outputs: {'baz' => 'qux'},
+      )
+    end
+
+    let(:conflicting_template) do
+      Skywriter::Template.new(
+        parameters: {'foo' => 'not bar'},
+        mappings: {'foo' => 'not bar'},
+        conditions: {'foo' => 'not bar'},
+        resources: [conflicting_resource],
+        outputs: {'foo' => 'not bar'},
+      )
+    end
+
+    let(:hash_template) do
+      template.as_json
+    end
+
+    let(:disjoint_hash_template) do
+      disjoint_template.as_json
+    end
+
+    let(:conflicting_hash_template) do
+      conflicting_template.as_json
+    end
+
+    context "with another template containing conflicting values" do
+      let(:other_template) { Skywriter::Template.new(format_version: 'other format version') }
+
+      it "raises a MergeError" do
+        expect { template.merge(other_template) }.to raise_error(Skywriter::Template::MergeError)
+      end
+    end
+
+    context "with another template containing disjoint values" do
+      let(:other_template) { Skywriter::Template.new(description: 'description') }
+
+      it "sets the value on returned template" do
+        expect(template.merge(other_template).description).to eq('description')
+      end
+    end
+
+    # We're going to set up the template that will be merged into 'self'.  
+    #
+    # We'll handle three cases:
+    #   * the case where 'other' has different keys than 'self' (disjoint)
+    #   * the case where 'other' has the same keys _and_ values as 'self' (duplicate)
+    #   * the case where 'other' has the same keys as 'self' and different values (conflicting)
+    #
+    # Unfortunately, our #let-s are only available inside an assertion, 
+    # so we'll just pass the method name and #send it inside the assertion
+    #
+    {
+      "where 'other' is a template" => {
+        :disjoint => :disjoint_template, 
+        :duplicate => :template,
+        :conflicting => :conflicting_template
+      },
+      "where 'other' is a hash" => {
+        :disjoint => :disjoint_hash_template,
+        :duplicate => :hash_template,
+        :conflicting => :conflicting_hash_template
+      },
+    }.each do |other_template_description, other_templates|
+
+      # Disjoint
+      #
+      context "#{other_template_description} and their values are disjoint" do
+        let(:other_template) { send(other_templates[:disjoint]) }
+
+        subject { template.merge(other_template) }
+
+        # (OK, so I lied - we're going to do a little more meta-testing so we don't
+        #   have to write each of these out individually)
+        #
+        ['Parameters', 'Mappings', 'Conditions', 'Resources', 'Outputs'].each do |meth|
+          it "sets value of #{meth} to 'other' merged into 'self'" do
+            other_template.as_json[meth].each_key do |other_key|
+              expect(subject.as_json[meth]).to have_key(other_key)
+            end
+          end
+        end
+      end
+
+      # Duplicate
+      #
+      context "#{other_template_description} and their values are duplicated" do
+        let(:other_template) { send(other_templates[:duplicate]) }
+
+        subject { template.merge(other_template) }
+
+        [:parameters, :mappings, :conditions, :resources, :outputs].each do |meth|
+          it "sets value of #{meth} to value from 'self'" do
+            template.send(meth).each_key do |other_key|
+              expect(subject.send(meth)).to have_key(other_key)
+            end
+          end
+        end
+      end
+
+      # Conflicting
+      #
+      context "and their values are conflicting" do
+        let(:other_template) { send(other_templates[:conflicting]) }
+
+        it "raises an exception" do
+          expect { template.merge(other_template) }.to raise_error(Skywriter::Template::MergeError)
+        end
+      end
+    end
+  end
 end
