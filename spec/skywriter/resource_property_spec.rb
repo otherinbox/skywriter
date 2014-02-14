@@ -8,6 +8,30 @@ describe Skywriter::ResourceProperty do
     end
   end
 
+  let(:resource_class) do
+    class Skywriter::Resource::TestResource
+      include Skywriter::Resource
+
+      property :FooBar
+    end
+    Skywriter::Resource::TestResource
+  end
+
+
+  describe "#to_json" do
+    context "with pointer in resource property" do
+      let(:resource) do
+        resource_class.new("resource")
+      end
+
+      subject { resource_property_class.new(foo_bar: resource.as_pointer) }
+
+      it "doesn't explode with in resource property in a resource" do
+        expect { subject.to_json }.to_not raise_error
+      end
+    end
+  end
+
   describe "#as_json" do
     context "with missing properties" do
       subject { resource_property_class.new(foo_bar: '1').as_json }

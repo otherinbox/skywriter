@@ -18,7 +18,7 @@ module Skywriter
     #
     # @return [Hash] A JSON-able hash
     #
-    def as_json
+    def as_json(*)
       @as_json ||= property_definitions.each_with_object({}) do |property_definition, hash|
         if (value = property_value(property_definition))
           hash[property_definition.name] = value

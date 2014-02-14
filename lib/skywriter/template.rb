@@ -57,7 +57,7 @@ module Skywriter
     #
     # @return [Hash] A JSON-able hash
     #
-    def as_json
+    def as_json(*)
       {
         'FormatVersion' => format_version,
         'Description'   => description,
