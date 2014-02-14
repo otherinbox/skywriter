@@ -9,7 +9,7 @@ describe Skywriter::Resource do
     end
     Skywriter::Resource::TestResource
   end
-  
+
   let(:child_class) do
     class ChildClass < resource_class; end
     ChildClass
@@ -79,6 +79,40 @@ describe Skywriter::Resource do
       resource = resource_class.new('resource name', foo_bar: reference.as_pointer, additional_dependencies: ['reference', 'reference'])
 
       expect(resource.as_json['resource name']['DependsOn']).to eq(['reference'])
+    end
+
+    it "creates a DeletionPolicy key" do
+      resource = resource_class.new('resource name', foo_bar: 'x', deletion_policy: 'Retain')
+
+      expect(resource.as_json['resource name']['DeletionPolicy']).to eq('Retain')
+    end
+
+    it "creates a Metadata key" do
+      resource = resource_class.new('resource name', foo_bar: 'x', metadata: { foo: 'bar', baz: 'qux' })
+
+      expect(resource.as_json['resource name']['Metadata']).to eq(foo: 'bar', baz: 'qux')
+    end
+
+    it "creates a UpdatePolicy key" do
+      resource = resource_class.new(
+        'resource name',
+        foo_bar: 'x',
+        update_policy: {
+          AutoScalingRollingUpdate: {
+            MinInstancesInService: "1",
+            MaxBatchSize: "1",
+            PauseTime: "PT12M5S"
+          }
+        },
+      )
+
+      expect(resource.as_json['resource name']['UpdatePolicy']).to eq(
+        AutoScalingRollingUpdate: {
+          MinInstancesInService: "1",
+          MaxBatchSize: "1",
+          PauseTime: "PT12M5S"
+        }
+      )
     end
   end
 
