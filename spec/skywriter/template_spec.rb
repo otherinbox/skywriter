@@ -5,6 +5,7 @@ describe Skywriter::Template do
     it "doesn't explode" do
       expect { Skywriter::Template.new.to_json }.to_not raise_error
     end
+    
   end
 
   describe "#as_json" do

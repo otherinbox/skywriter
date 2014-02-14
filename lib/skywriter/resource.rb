@@ -50,7 +50,7 @@ module Skywriter
     #
     # @return [Hash] A JSON-able hash
     #
-    def as_json
+    def as_json(*)
       Thread.current[:skywriter_as_json_context] = self
 
       { logical_name =>
@@ -62,12 +62,6 @@ module Skywriter
       }
     ensure
       Thread.current[:skywriter_as_json_context] = nil
-    end
-
-    # Returns a JSON string representing the Resource
-    #
-    def to_json(*)
-      as_json.to_json
     end
 
     # Returns a pointer to this Resource

@@ -7,7 +7,7 @@ module Skywriter
         @resource = resource
       end
 
-      def as_json
+      def as_json(*)
         context.register_dependency(resource) unless context.nil?
 
         return json_fragment
