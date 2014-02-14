@@ -9,7 +9,7 @@ describe Skywriter::Resource do
     end
     Skywriter::Resource::TestResource
   end
-  
+
   let(:child_class) do
     class ChildClass < resource_class; end
     ChildClass
