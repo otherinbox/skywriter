@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElastiCache
+      # AWS::ElastiCache::CacheCluster Resource
+      # 
       class CacheCluster
         include Skywriter::Resource
 

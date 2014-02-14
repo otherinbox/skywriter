@@ -1,6 +1,10 @@
 module Skywriter
   module Resource
     module AutoScaling
+      # AWS::AutoScaling::AutoScalingGroup Resource
+      #
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html
+      #
       class AutoScalingGroup
         include Skywriter::Resource
 

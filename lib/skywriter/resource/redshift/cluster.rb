@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module Redshift
+      # AWS::Redshift::Cluster Resource
+      # 
       class Cluster
         include Skywriter::Resource
 

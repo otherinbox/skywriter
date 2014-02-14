@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module IAM
+      # AWS::IAM::InstanceProfile Resource
+      # 
       class InstanceProfile
         include Skywriter::Resource
 

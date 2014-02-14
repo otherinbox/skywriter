@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::NetworkInterface Resource
+      #
       class NetworkInterface
         include Skywriter::Resource
 

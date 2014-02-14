@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::VPNConnection Resource
+      #
       class VPNConnection
         include Skywriter::Resource
 

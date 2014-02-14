@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::Instance Resource
+      #
       class Instance
         include Skywriter::Resource
 

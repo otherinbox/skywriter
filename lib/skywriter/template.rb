@@ -49,6 +49,8 @@ module Skywriter
 
     # Returns a hash representing the Template
     #
+    # @return [Hash] A JSON-able hash
+    #
     def as_json
       {
         'FormatVersion' => format_version,

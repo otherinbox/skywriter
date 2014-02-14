@@ -1,10 +1,15 @@
 module Skywriter
   module Resource
     module DSL
-      def property(name, **options)
-        property_definitions << PropertyDefinition.new(name, options)
+      # Declare a Resource property
+      #
+      # @param name [Symbol] The property name as it exists in the AWS documentation
+      def property(name)
+        property_definitions << PropertyDefinition.new(name)
       end
 
+      # A list of PropertyDefinition instances defined for this Resource
+      #
       def property_definitions
         @property_definitions ||= []
       end
@@ -22,7 +27,7 @@ module Skywriter
       class PropertyDefinition
         attr_reader :name, :key
 
-        def initialize(name, **options)
+        def initialize(name)
           @name = name.to_s
           @key = name.to_s.underscore.to_sym
         end
@@ -31,11 +36,20 @@ module Skywriter
 
     attr_reader :logical_name
 
+    # @param [String] logical_name The logical name of this Resource.  Will be used as the hash key in the 'Resources' hash
+    # @param [Hash] options Options hash.  Valid values depend on the implementing class - see the AWS documentation
+    #   at http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
+    #   for details
+    #
     def initialize(logical_name, **options)
       @logical_name = logical_name
       @options = options.freeze
     end
 
+    # Returns a hash representing the Resource
+    #
+    # @return [Hash] A JSON-able hash
+    #
     def as_json
       Thread.current[:skywriter_as_json_context] = self
 
@@ -50,13 +64,34 @@ module Skywriter
       Thread.current[:skywriter_as_json_context] = nil
     end
 
+    # Returns a JSON string representing the Resource
+    #
     def to_json(*)
       as_json.to_json
     end
 
+    # Returns a pointer to this Resource
+    #
+    # Pointers represent references to resources defined elsewhere in
+    # a template.  In most cases pointers serialize to something like
+    #
+    # @example
+    #   { "Ref" => "logical_name" }
+    #
+    # In some cases, you might need to refer to a resource using its
+    # logical name directly (as opposed to nested in a hash as shown),
+    # in which case you can tell `as_pointer` to point with the resource's
+    # logical name:
+    #
+    # @example
+    #   resource.as_pointer(with: :logical_name)
+    #
     # @param with [:ref, :logical_name] How this pointer should be 
     #   rendered in JSON.  Use `:ref` to generate {"Ref": "foo"},
     #   and `:logical_name` to generate "foo"
+    #
+    # @return [Skywriter::Resource::Pointer] A pointer to this resource
+    #
     def as_pointer(with: :ref)
       case with
       when :ref
@@ -68,6 +103,10 @@ module Skywriter
       end
     end
 
+    # @api private
+    #
+    # @param dependency [Skywriter::Resource] A Resource upon which this resource depends.
+    #
     def register_dependency(dependency)
       magical_dependencies << dependency.logical_name
     end

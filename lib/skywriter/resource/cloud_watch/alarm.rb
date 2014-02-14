@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module CloudWatch
+      # AWS::CloudWatch::Alarm Resource
+      #
       class Alarm
         include Skywriter::Resource
 
