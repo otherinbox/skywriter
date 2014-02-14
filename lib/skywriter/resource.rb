@@ -36,18 +36,22 @@ module Skywriter
 
     attr_reader :logical_name
 
-    # @param [String] logical_name The logical name of this Resource.  Will be used as the hash key in the 'Resources' hash
-    # @param [Hash] options Options hash.  Valid values depend on the implementing class - see the AWS documentation
-    #   at http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
-    #   for details
+    # @param [String] logical_name The logical name of this Resource.  Will be
+    #   used as the hash key in the 'Resources' hash
+    # @param [Hash] options Options hash.  Valid values depend on the
+    #   implementing class - see the AWS documentation at
+    #   http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
+    #   for details. Additionally, you can pass `:additional_dependencies` as
+    #   described in the README. And `:deletion_policy`, `:metadata` and
+    #   `:update_policy`.
     #
     def initialize(logical_name, options = {})
       @logical_name = logical_name
 
-      @additional_dependencies = Set.new(Array(options.delete(:additional_dependencies)))
-      @deletion_policy = options.delete(:deletion_policy)
-      @metadata = options.delete(:metadata)
-      @update_policy = options.delete(:update_policy)
+      @additional_dependencies = Set.new(Array(delete_liberally(options, :additional_dependencies)))
+      @deletion_policy = delete_liberally(options, :deletion_policy)
+      @metadata = delete_liberally(options, :metadata)
+      @update_policy = delete_liberally(options, :update_policy)
 
       @options = options.freeze
     end
@@ -132,6 +136,13 @@ module Skywriter
 
     def all_dependencies
       (additional_dependencies + magical_dependencies).to_a
+    end
+
+    def delete_liberally(hash, key)
+      hash.delete(key.to_sym) ||
+        hash.delete(key.to_s) ||
+        hash.delete(key.to_s.camelcase) ||
+        hash.delete(key.to_s.camelcase.to_sym)
     end
 
     def magical_dependencies
