@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElasticLoadBalancing
+      # AWS::ElasticLoadBalancing::LoadBalancer Resource
+      # 
       class LoadBalancer
         include Skywriter::Resource
 

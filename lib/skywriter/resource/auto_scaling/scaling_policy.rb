@@ -1,6 +1,10 @@
 module Skywriter
   module Resource
     module AutoScaling
+      # AWS::AutoScaling::ScalingPolicy Resource
+      #
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html
+      #
       class ScalingPolicy
         include Skywriter::Resource
 

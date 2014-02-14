@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module CloudFormation
+      # AWS::CloudFormation::Stack Resource
+      #
       class Stack
         include Skywriter::Resource
 

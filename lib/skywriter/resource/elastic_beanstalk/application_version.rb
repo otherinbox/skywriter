@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElasticBeanstalk
+      # AWS::ElasticBeanstalk::ApplicationVersion Resource
+      # 
       class ApplicationVersion
         include Skywriter::Resource
 

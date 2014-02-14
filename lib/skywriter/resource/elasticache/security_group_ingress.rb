@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElastiCache
+      # AWS::ElastiCache::SecurityGroupIngress Resource
+      # 
       class SecurityGroupIngress
         include Skywriter::Resource
 

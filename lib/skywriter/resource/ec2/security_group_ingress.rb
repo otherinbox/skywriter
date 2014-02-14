@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::SecurityGroupIngress Resource
+      #
       class SecurityGroupIngress < Skywriter::ResourceProperty::EC2::SecurityGroupRule
         property :GroupName
         property :GroupId

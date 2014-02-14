@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module S3
+      # AWS::S3::Bucket Resource
+      # 
       class Bucket
         include Skywriter::Resource
 

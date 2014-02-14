@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module Redshift
+      # AWS::Redshift::ClusterParameterGroup Resource
+      # 
       class ClusterParameterGroup
         include Skywriter::Resource
 

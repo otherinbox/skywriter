@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module IAM
+      # AWS::IAM::User Resource
+      # 
       class User
         include Skywriter::Resource
 

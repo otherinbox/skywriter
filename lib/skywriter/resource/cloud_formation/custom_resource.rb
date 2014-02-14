@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module CloudFormation
+      # AWS::CloudFormation::CustomResource Resource
+      #
       class CustomResource
         include Skywriter::Resource
 

@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElasticBeanstalk
+      # AWS::ElasticBeanstalk::Environment Resource
+      # 
       class Environment
         include Skywriter::Resource
 
