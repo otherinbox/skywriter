@@ -102,10 +102,10 @@ module Skywriter
     end
 
     def property_value(property_definition)
-      options[property_definition.key.to_s] ||
+      options[property_definition.key.to_sym] ||
         options[property_definition.key.to_s] ||
-        options[property_definition.name.to_s] ||
-        options[property_definition.name.to_sym]
+        options[property_definition.name.to_sym] ||
+        options[property_definition.name.to_s]
     end
 
     def property_definitions
