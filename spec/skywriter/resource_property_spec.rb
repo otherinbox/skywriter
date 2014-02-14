@@ -32,6 +32,38 @@ describe Skywriter::ResourceProperty do
         expect(subject).to_not have_key('BazQux')
       end
     end
+
+    context "with snake case symbol property names" do
+      subject { resource_property_class.new(foo_bar: 'baz').as_json }
+
+      it "sets value" do
+        expect(subject).to have_key('FooBar')
+      end
+    end
+
+    context "with snake case string property names" do
+      subject { resource_property_class.new('foo_bar' => 'baz').as_json }
+
+      it "sets value" do
+        expect(subject).to have_key('FooBar')
+      end
+    end
+
+    context "with CamelCase symbol property names" do
+      subject { resource_property_class.new(FooBar: 'baz').as_json }
+
+      it "sets value" do
+        expect(subject).to have_key('FooBar')
+      end
+    end
+
+    context "with CamelCase string property names" do
+      subject { resource_property_class.new('FooBar' => 'baz').as_json }
+
+      it "sets value" do
+        expect(subject).to have_key('FooBar')
+      end
+    end
   end
 end
 

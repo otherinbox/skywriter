@@ -87,5 +87,53 @@ describe Skywriter::Template do
         expect(template.as_json['Resources']).to eq("foo" => "bar")
       end
     end
+
+    context "with snake case symbol key name" do
+      let(:template) do
+        Skywriter::Template.new(
+          resources: {"foo" => "bar"}
+        )
+      end
+
+      it "sets value" do
+        expect(template.as_json['Resources']).to eq("foo" => "bar")
+      end
+    end
+
+    context "with snake case string key name" do
+      let(:template) do
+        Skywriter::Template.new(
+          'resources' => {"foo" => "bar"}
+        )
+      end
+
+      it "sets value" do
+        expect(template.as_json['Resources']).to eq("foo" => "bar")
+      end
+    end
+
+    context "with CameCase symbol key name" do
+      let(:template) do
+        Skywriter::Template.new(
+          Resources: {"foo" => "bar"}
+        )
+      end
+
+      it "sets value" do
+        expect(template.as_json['Resources']).to eq("foo" => "bar")
+      end
+    end
+
+    context "with CamelCase string key name" do
+      let(:template) do
+        Skywriter::Template.new(
+          'Resources' => {"foo" => "bar"}
+        )
+      end
+
+      it "sets value" do
+        expect(template.as_json['Resources']).to eq("foo" => "bar")
+      end
+    end
   end
 end

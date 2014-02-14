@@ -17,8 +17,26 @@ describe Skywriter::Resource do
 
 
   describe "#as_json" do
-    it "serializes literal property values" do
+    it "serializes literal property values specified with snake case symbols" do
       resource = resource_class.new('resource name', foo_bar: 'value')
+
+      expect(resource.as_json['resource name']['Properties']['FooBar']).to eq("value")
+    end
+
+    it "serializes literal property values specified with snake case strings" do
+      resource = resource_class.new('resource name', 'foo_bar' => 'value')
+
+      expect(resource.as_json['resource name']['Properties']['FooBar']).to eq("value")
+    end
+
+    it "serializes literal property values specified with CamelCase symbols" do
+      resource = resource_class.new('resource name', FooBar: 'value')
+
+      expect(resource.as_json['resource name']['Properties']['FooBar']).to eq("value")
+    end
+
+    it "serializes literal property values specified with CamelCase strings" do
+      resource = resource_class.new('resource name', 'FooBar' => 'value')
 
       expect(resource.as_json['resource name']['Properties']['FooBar']).to eq("value")
     end
