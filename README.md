@@ -56,4 +56,5 @@ failing test can be helpful. If in doubt, make an Issue to discuss.
 
 Copyright © 2014 Return Path.
 
-This gem is distributed under the MIT License. See LICENSE.md for details.
+This gem is distributed under the MIT License. See [LICENSE.md](LICENSE.md) for
+details.
