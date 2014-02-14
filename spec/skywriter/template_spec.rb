@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Skywriter::Template do
+  describe "#to_json" do
+    it "doesn't explode" do
+      expect { Skywriter::Template.new.to_json }.to_not raise_error
+    end
+  end
+
   describe "#as_json" do
     context "with an empty object" do
       let(:template) { Skywriter::Template.new }
