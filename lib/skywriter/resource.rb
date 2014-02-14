@@ -43,6 +43,12 @@ module Skywriter
     #
     def initialize(logical_name, options = {})
       @logical_name = logical_name
+
+      @additional_dependencies = Set.new(Array(options.delete(:additional_dependencies)))
+      @deletion_policy = options.delete(:deletion_policy)
+      @metadata = options.delete(:metadata)
+      @update_policy = options.delete(:update_policy)
+
       @options = options.freeze
     end
 
@@ -58,7 +64,10 @@ module Skywriter
           'Type' => type,
           'Properties' => properties.as_json,
           'DependsOn' => all_dependencies,
-        }
+          'Metadata' => metadata,
+          'DeletionPolicy' => deletion_policy,
+          'UpdatePolicy' => update_policy,
+        }.reject { |key, value| value.nil? }
       }
     ensure
       Thread.current[:skywriter_as_json_context] = nil
@@ -114,7 +123,8 @@ module Skywriter
 
     private
 
-    attr_reader :options
+    attr_reader :options, :additional_dependencies, :deletion_policy, :metadata,
+      :update_policy
 
     def self.included(base)
       base.extend(DSL)
@@ -122,10 +132,6 @@ module Skywriter
 
     def all_dependencies
       (additional_dependencies + magical_dependencies).to_a
-    end
-
-    def additional_dependencies
-      Set.new(Array(options[:additional_dependencies]))
     end
 
     def magical_dependencies
