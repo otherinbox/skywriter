@@ -21,7 +21,19 @@ the `DependsOn` key automatically. If you have additional dependencies which
 should be included in this key, they can be declared like this:
 
 ``` ruby
-Resource.new("ResourceName", additional_dependencies: ['foo', 'bar'])
+Resource.new(
+  "ResourceName", 
+  additional_dependencies: ['foo', 'bar'],
+  some_property: other_resource.as_pointer,
+).as_json 
+  
+# yields:
+# { "ResourceName" => {
+#   "Parameters" => {
+#     "SomeProperty" => {"Ref" => "OtherResource"}
+#   },
+#   "DependsOn" => ["foo", "bar", "OtherResource"]
+# }}
 ```
 
 See the example section below for some more concrete examples.
