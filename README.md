@@ -25,7 +25,7 @@ Resource.new(
   "ResourceName", 
   additional_dependencies: ['foo', 'bar'],
   some_property: other_resource.as_pointer,
-  ).as_json 
+).as_json 
   
 # yields:
 # { "ResourceName" => {
