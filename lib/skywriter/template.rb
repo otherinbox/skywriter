@@ -66,7 +66,6 @@ module Skywriter
         'Conditions'    => conditions,
         'Resources'     => resources,
         'Outputs'       => outputs,
-
       }.reject { |key, value| value.nil? }
     end
 
