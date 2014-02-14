@@ -198,6 +198,10 @@ describe Skywriter::Template do
           disjoint_template.as_json[meth].each_key do |other_key|
             expect(subject.as_json[meth]).to have_key(other_key)
           end
+
+          template.as_json[meth].each_key do |template_key|
+            expect(subject.as_json[meth]).to have_key(template_key)
+          end
         end
       end
     end
