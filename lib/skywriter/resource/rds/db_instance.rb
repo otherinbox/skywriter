@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module RDS
+      # AWS::RDS::DBInstance Resource
+      # 
       class DBInstance
         include Skywriter::Resource
 

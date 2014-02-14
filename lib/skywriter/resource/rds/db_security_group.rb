@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module RDS
+      # AWS::RDS::DBSecurityGroup Resource
+      # 
       class DBSecurityGroup
         include Skywriter::Resource
 

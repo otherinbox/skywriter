@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module DynamoDB
+      # AWS::DynamoDB::Table Resource
+      #
       class Table
         include Skywriter::Resource
 

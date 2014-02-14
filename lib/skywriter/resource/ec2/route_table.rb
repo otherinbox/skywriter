@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::RouteTable Resource
+      #
       class RouteTable
         include Skywriter::Resource
 

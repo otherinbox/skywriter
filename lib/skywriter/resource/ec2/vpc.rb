@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::VPC Resource
+      # 
       class VPC
         include Skywriter::Resource
 

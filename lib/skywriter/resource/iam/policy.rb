@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module IAM
+      # AWS::IAM::Policy Resource
+      # 
       class Policy
         include Skywriter::Resource
 

@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module Redshift
+      # AWS::Redshift::ClusterSecurityGroupIngress Resource
+      # 
       class ClusterSecurityGroupIngress
         include Skywriter::Resource
 

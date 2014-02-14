@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module CloudFormation
+      # AWS::CloudFormation::Authentication Resource
+      #
       class Authentication
         include Skywriter::Resource
 

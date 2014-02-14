@@ -1,6 +1,10 @@
 module Skywriter
   module Resource
     module AutoScaling
+      # AWS::AutoScaling::ScheduledAction Resource
+      #
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html
+      #
       class ScheduledAction
         include Skywriter::Resource
 

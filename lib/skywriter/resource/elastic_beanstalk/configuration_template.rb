@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElasticBeanstalk
+      # AWS::ElasticBeanstalk::ConfigurationTemplate Resource
+      # 
       class ConfigurationTemplate
         include Skywriter::Resource
 

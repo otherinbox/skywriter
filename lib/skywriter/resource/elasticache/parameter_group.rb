@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module ElastiCache
+      # AWS::ElastiCache::ParameterGroup Resource
+      # 
       class ParameterGroup
         include Skywriter::Resource
 

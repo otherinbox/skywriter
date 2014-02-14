@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module Route53
+      # AWS::Route53::RecordSet Resource
+      # 
       class RecordSet
         include Skywriter::Resource
 

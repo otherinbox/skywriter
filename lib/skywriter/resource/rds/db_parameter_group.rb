@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module RDS
+      # AWS::RDS::DBParameterGroup Resource
+      # 
       class DBParameterGroup
         include Skywriter::Resource
 

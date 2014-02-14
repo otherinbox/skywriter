@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::VolumeAttachment Resource
+      # 
       class VolumeAttachment
         include Skywriter::Resource
 
