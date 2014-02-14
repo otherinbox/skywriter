@@ -90,7 +90,9 @@ my_ec2_sg = Skywriter::Resource::EC2::SecurityGroup.new(
 
 my_db_sg = Skywriter::Resource::RDS::DBSecurityGroup.new(
   "database_security_group",
-  DBSecurityGroupIngress: Skywriter::ResourceProperty::RDS::SecurityGroupRule.new(EC2SecurityGroupName: my_ec2_sg.as_pointer(with: :logical_name))
+  DBSecurityGroupIngress: Skywriter::ResourceProperty::RDS::SecurityGroupRule.new(
+    EC2SecurityGroupName: my_ec2_sg.as_pointer(with: :logical_name)
+  )
 )
 
 my_db = Skywriter::Resource::RDS::DBInstance.new(
