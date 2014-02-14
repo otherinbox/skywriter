@@ -67,12 +67,6 @@ Skywriter::Template.new(
 ).as_json
 ```
 
-Here is the JSON output of the template.
-```JSON
-{"FormatVersion"=>"2010-09-09", "Description"=>"This is a test template", "Parameters"=>{}, "Mappings"=>{}, "Conditions"=>{}, "Resources"=>{"myVPC"=>{"Type"=>"AWS::EC2::VPC", "Properties"=>{"CidrBlock"=>"10.10.0.0/16", "Tags"=>{"network"=>"public"}}, "DependsOn"=>[]}, "myInternetGateway"=>{"Type"=>"AWS::EC2::InternetGateway", "Properties"=>{"Tags"=>{"network"=>"public"}}, "DependsOn"=>[]}, "myGatewayAttachment"=>{"Type"=>"AWS::EC2::VPCGatewayAttachment", "Properties"=>{"VpcId"=>{"Ref"=>"myVPC"}}, "DependsOn"=>["myVPC"]}}, "Outputs"=>{}}
-```
-
-
 Here we create an EC2 security group that is accessible on ports 80 and 22. The ec2 security group is added into the ingress for a database security group by using a pointer that references the logical name of the resource.
 The new database security group, as well as an old one that already exists in our account, are both applied to a database instance resource.
 
@@ -105,14 +99,6 @@ Skywriter::Template.new(
   resources: [my_ec2_sg, my_db_sg, my_db]
 ).as_json
 ```
-
-Here is the JSON output of the template.
-``` json
-{"FormatVersion"=>"2010-09-09", "Parameters"=>{}, "Mappings"=>{}, "Conditions"=>{}, "Resources"=>{"ec2_security_group"=>{"Type"=>"AWS::EC2::SecurityGroup", "Properties"=>{"GroupDescription"=>"a security group for my ec2 instances", "SecurityGroupIngress"=>[{"FromPort"=>80, "ToPort"=>80, "IpProtocol"=>"tcp"}, {"FromPort"=>22, "ToPort"=>22, "IpProtocol"=>"tcp"}]}, "DependsOn"=>[]}, "database_security_group"=>{"Type"=>"AWS::RDS::DBSecurityGroup", "Properties"=>{"DBSecurityGroupIngress"=>{"EC2SecurityGroupName"=>#<Skywriter::Resource::LogicalNamePointer:0x0000000324fb78 @resource=#<Skywriter::Resource::EC2::SecurityGroup:0x0000000324fbf0 @logical_name="ec2_security_group", @options={:GroupDescription=>"a security group for my ec2 instances", :SecurityGroupIngress=>[#<Skywriter::ResourceProperty::EC2::SecurityGroupRule:0x0000000324fce0 @options={:FromPort=>80, :ToPort=>80, :IpProtocol=>"tcp"}, @as_json={"FromPort"=>80, "ToPort"=>80, "IpProtocol"=>"tcp"}>, #<Skywriter::ResourceProperty::EC2::SecurityGroupRule:0x0000000324fc68 @options={:FromPort=>22, :ToPort=>22, :IpProtocol=>"tcp"}, @as_json={"FromPort"=>22, "ToPort"=>22, "IpProtocol"=>"tcp"}>]}, @properties={"GroupDescription"=>"a security group for my ec2 instances", "SecurityGroupIngress"=>[#<Skywriter::ResourceProperty::EC2::SecurityGroupRule:0x0000000324fce0 @options={:FromPort=>80, :ToPort=>80, :IpProtocol=>"tcp"}, @as_json={"FromPort"=>80, "ToPort"=>80, "IpProtocol"=>"tcp"}>, #<Skywriter::ResourceProperty::EC2::SecurityGroupRule:0x0000000324fc68 @options={:FromPort=>22, :ToPort=>22, :IpProtocol=>"tcp"}, @as_json={"FromPort"=>22, "ToPort"=>22, "IpProtocol"=>"tcp"}>]}, @magical_dependencies=#<Set: {}>>>}}, "DependsOn"=>[]}, "mysql_database"=>{"Type"=>"AWS::RDS::DBInstance", "Properties"=>{"AllocatedStorage"=>5, "AvailabilityZone"=>"us-east-1a", "DBName"=>"my_db", "DBSecurityGroups"=>["old_sg", {"Ref"=>"database_security_group"}], "Engine"=>"MySQL"}, "DependsOn"=>["database_security_group"]}}, "Outputs"=>{}}
-
-```
-
-
 
 
 ## Contributing
