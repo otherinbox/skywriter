@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module SQS
+      # AWS::SQS::QueuePolicy Resource
+      # 
       class QueuePolicy
         include Skywriter::Resource
 

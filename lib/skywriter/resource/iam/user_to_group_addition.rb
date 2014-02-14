@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module IAM
+      # AWS::IAM::UserToGroupAddition Resource
+      # 
       class UserToGroupAddition
         include Skywriter::Resource
 

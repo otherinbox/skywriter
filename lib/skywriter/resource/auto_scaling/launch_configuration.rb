@@ -1,6 +1,10 @@
 module Skywriter
   module Resource
     module AutoScaling
+      # AWS::AutoScaling::LaunchConfiguration Resource
+      #
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html
+      #
       class LaunchConfiguration
         include Skywriter::Resource
 

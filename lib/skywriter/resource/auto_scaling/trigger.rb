@@ -1,6 +1,10 @@
 module Skywriter
   module Resource
     module AutoScaling
+      # AWS::AutoScaling::Trigger Resource
+      #
+      # http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-trigger.html
+      #
       class Trigger
         include Skywriter::Resource
 

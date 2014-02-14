@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::NetworkAclEntry Resource
+      #
       class NetworkAclEntry
         include Skywriter::Resource
 

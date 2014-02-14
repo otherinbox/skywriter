@@ -1,6 +1,8 @@
 module Skywriter
   module Resource
     module EC2
+      # AWS::EC2::Route Resource
+      #
       class Route
         include Skywriter::Resource
 
