@@ -11,6 +11,8 @@ runnable code provides some benefits like variable assignment, that make the
 need to use CloudFormation's build-in functions superfluous (of course,
 Skywriter still has helpers for those functions, if you need them).
 
+[RDoc](http://rubydoc.info/gems/skywriter/frames)
+
 
 ## Features
 
