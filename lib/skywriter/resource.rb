@@ -41,7 +41,7 @@ module Skywriter
     #   at http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
     #   for details
     #
-    def initialize(logical_name, **options)
+    def initialize(logical_name, options = {})
       @logical_name = logical_name
       @options = options.freeze
     end
@@ -92,7 +92,8 @@ module Skywriter
     #
     # @return [Skywriter::Resource::Pointer] A pointer to this resource
     #
-    def as_pointer(with: :ref)
+    def as_pointer(options = {})
+      with = options[:with] || :ref
       case with
       when :ref
         Skywriter::Resource::RefPointer.new(self)
@@ -133,10 +134,17 @@ module Skywriter
 
     def properties
       @properties ||= property_definitions.each_with_object({}) do |property_definition, hash|
-        if (value = options[property_definition.key])
+        if (value = property_value(property_definition))
           hash[property_definition.name] = value
         end
       end
+    end
+
+    def property_value(property_definition)
+      options[property_definition.key.to_sym] ||
+        options[property_definition.key.to_s] ||
+        options[property_definition.name.to_sym] ||
+        options[property_definition.name.to_s]
     end
 
     def property_definitions

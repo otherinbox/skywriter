@@ -40,11 +40,11 @@ module Skywriter
       @format_version   = (options[:format_version] || '2010-09-09').freeze
       @description      = options[:description].freeze
 
-      @parameters       = (options[:parameters] || {}).as_json.freeze
-      @mappings         = (options[:mappings] || {}).as_json.freeze
-      @conditions       = (options[:conditions] || {}).as_json.freeze
-      @resources        = resources_as_json(options[:resources]).freeze
-      @outputs          = (options[:outputs] || {}).as_json.freeze
+      @parameters       = (access_liberally(options, :parameters) || {}).freeze
+      @mappings         = (access_liberally(options, :mappings) || {}).freeze
+      @conditions       = (access_liberally(options, :conditions) || {}).freeze
+      @resources        = resources_as_json(access_liberally(options, :resources)).freeze
+      @outputs          = (access_liberally(options, :outputs) || {}).freeze
     end
 
     # Returns a hash representing the Template
@@ -86,6 +86,13 @@ module Skywriter
     end
 
     private
+
+    def access_liberally(object, key)
+      object[key.to_sym] ||
+        object[key.to_s] ||
+        object[key.to_s.camelcase.to_sym] ||
+        object[key.to_s.camelcase.to_s]
+    end
 
     def merge_value!(attribute, other_value)
       self_value = send(attribute)
