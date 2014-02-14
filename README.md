@@ -75,8 +75,16 @@ my_ec2_sg = Skywriter::Resource::EC2::SecurityGroup.new(
   "ec2_security_group",
   GroupDescription: "a security group for my ec2 instances",
   SecurityGroupIngress: [
-    Skywriter::ResourceProperty::EC2::SecurityGroupRule.new(FromPort: 80, ToPort: 80, IpProtocol: "tcp"),
-    Skywriter::ResourceProperty::EC2::SecurityGroupRule.new(FromPort: 22, ToPort: 22, IpProtocol: "tcp")
+    Skywriter::ResourceProperty::EC2::SecurityGroupRule.new(
+      FromPort: 80, 
+      ToPort: 80, 
+      IpProtocol: "tcp"
+    ),
+    Skywriter::ResourceProperty::EC2::SecurityGroupRule.new(
+      FromPort: 22, 
+      ToPort: 22, 
+      IpProtocol: "tcp"
+    )
   ]
 )
 
