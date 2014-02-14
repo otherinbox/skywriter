@@ -41,7 +41,61 @@ See the example section below for some more concrete examples.
 
 ## Examples
 
-*(Peter is writing some, which should go here)*
+This example will build a basic VPC with an Internet Gateway. It uses a pointer to reference the VpcId in the Gateway Attachment resource.
+It then creates a Cloudformation template from the resources.
+
+``` ruby
+my_vpc = Skywriter::Resource::EC2::VPC.new(
+  "myVPC", 
+  cidr_block: "10.10.0.0/16", 
+  tags: { network: "public" }
+)
+
+my_igw = Skywriter::Resource::EC2::InternetGateway.new(
+  "myInternetGateway", 
+  tags: { network: "public" }
+)
+
+my_gateway_attachment = Skywriter::Resource::EC2::VPCGatewayAttachment.new(
+  "myGatewayAttachment", 
+  vpc_id: my_vpc.as_pointer
+)
+
+Skywriter::Template.new(
+  description: "This is a test template",
+  resources: [my_vpc, my_igw, my_gateway_attachment]
+).as_json
+```
+
+
+Here we create an EC2 security group that is accessible on ports 80 and 22. The ec2 security group is added into the ingress for a database security group by using a pointer that references the logical name of the resource.
+The new database security group, as well as an old one that already exists in our account, are both applied to a database instance resource.
+
+``` ruby
+my_ec2_sg = Skywriter::Resource::EC2::SecurityGroup.new(
+  "ec2_security_group"
+  GroupDescription: "a security group for my ec2 instances"
+  SecurityGroupIngress: [
+    Skywriter::ResourceProperty::EC2::SecurityGroupRule.new(FromPort: 80, ToPort: 80 IpProtocol: "tcp"], 
+    Skywriter::ResourceProperty::EC2::SecurityGroupRule.new(FromPort: 22, ToPort: 22 IpProtocol: "tcp"] )
+)
+
+my_db_sg = Skywriter::Resource::RDS::DBSecurityGroup.new(
+  "database_security_group",
+  DBSecurityGroupIngress: Skywriter::ResourceProperty::RDS::SecurityGroupRule.new(EC2SecurityGroupName: ec2_sg.as_pointer(with :logical_name)
+)
+
+my_db = Skywriter::Resource::RDS::DBInstance.new(
+  "mysql_database", 
+  allocated_ storage: 5,
+  availability_zone: "us-east-1a",
+  db_name: "my_db",
+  engine: "MySQL", 
+  db_security_groups: ["old_sg", db_sg.as_pointer]
+)
+```
+
+
 
 
 ## Contributing
