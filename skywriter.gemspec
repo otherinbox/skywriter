@@ -6,8 +6,8 @@ require 'skywriter/version'
 Gem::Specification.new do |spec|
   spec.name          = "skywriter"
   spec.version       = Skywriter::VERSION
-  spec.authors       = ["Ryan Michael"]
-  spec.email         = ["kerinin@gmail.com"]
+  spec.authors       = ["Ryan Michael", "Ben Hamill"]
+  spec.email         = ["ryanmichael@otherinbox.com", "ben@context.io"]
   spec.summary       = %q{Writes cloud formations}
   spec.description   = %q{Writes AWS CloudFormation templates.}
   spec.homepage      = "https://github.com/otherinbox/skywriter#readme"
