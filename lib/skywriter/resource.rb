@@ -57,7 +57,8 @@ module Skywriter
     # @param with [:ref, :logical_name] How this pointer should be 
     #   rendered in JSON.  Use `:ref` to generate {"Ref": "foo"},
     #   and `:logical_name` to generate "foo"
-    def as_pointer(with: :ref)
+    def as_pointer(options = {})
+      with = options[:with] || :ref
       case with
       when :ref
         Skywriter::Resource::RefPointer.new(self)
