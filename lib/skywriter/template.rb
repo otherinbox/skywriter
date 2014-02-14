@@ -65,10 +65,10 @@ module Skywriter
     private
 
     def access_liberally(object, key)
-      object[key] ||                          # index with snake case symbol
-        object[key.to_s] ||                   # index with snake case string
-        object[key.to_s.camelcase.to_sym] ||  # index with CamelCase symbol
-        object[key.to_s.camelcase]            # index with CamelCase string
+      object[key.to_sym] ||
+        object[key.to_s] ||
+        object[key.to_s.camelcase.to_sym] ||
+        object[key.to_s.camelcase.to_s]
     end
 
     def resources_as_json
