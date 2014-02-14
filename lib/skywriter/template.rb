@@ -69,30 +69,16 @@ module Skywriter
     protected
 
     def merge!(other)
-      case other
-      when Skywriter::Template
-        merge_value!(:format_version, other.format_version)
-        merge_value!(:description, other.description)
+      raise ArgumentError, "Don't know how to merge with a #{other.class.name}" unless other.kind_of?(Template)
 
-        merge_hash!(:parameters, other.parameters)
-        merge_hash!(:mappings, other.mappings)
-        merge_hash!(:conditions, other.conditions)
-        merge_hash!(:resources, other.resources)
-        merge_hash!(:outputs, other.outputs)
+      merge_value!(:format_version, other.format_version)
+      merge_value!(:description, other.description)
 
-      when Hash
-        merge_value!(:format_version, other['FormatVersion'])
-        merge_value!(:description, other['Description'])
-
-        merge_hash!(:parameters, other['Parameters'] || {})
-        merge_hash!(:mappings, other['Mappings'] || {})
-        merge_hash!(:conditions, other['Conditions'] || {})
-        merge_hash!(:resources, other['Resources'] || {})
-        merge_hash!(:outputs, other['Outputs'] || {})
-
-      else
-        raise ArgumentError, "Don't know how to merge with a #{other.class.name}"
-      end
+      merge_hash!(:parameters, other.parameters)
+      merge_hash!(:mappings, other.mappings)
+      merge_hash!(:conditions, other.conditions)
+      merge_hash!(:resources, other.resources)
+      merge_hash!(:outputs, other.outputs)
 
       self
     end
