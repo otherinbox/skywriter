@@ -1,7 +1,7 @@
 module Skywriter
   module Resource
     module DSL
-      def property(name, **options)
+      def property(name, options = {})
         property_definitions << PropertyDefinition.new(name, options)
       end
 
@@ -22,7 +22,7 @@ module Skywriter
       class PropertyDefinition
         attr_reader :name, :key
 
-        def initialize(name, **options)
+        def initialize(name, options = {})
           @name = name.to_s
           @key = name.to_s.underscore.to_sym
         end
