@@ -47,10 +47,12 @@ module Skywriter
       @outputs          = (access_liberally(options, :outputs) || {}).freeze
     end
 
-    # Returns a JSON string representing the Resource
+    # Returns a JSON string representing the Template
+    #
+    # @return [String] A JSON string
     #
     def to_json(*)
-      as_json.to_json
+      JSON.pretty_generate(as_json)
     end
 
     # Returns a hash representing the Template
