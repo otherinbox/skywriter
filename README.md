@@ -103,7 +103,7 @@ my_db = Skywriter::Resource::RDS::DBInstance.new(
   availability_zone: "us-east-1a",
   db_name: "my_db",
   engine: "MySQL",
-  db_security_groups: ["old_sg", my_db_sg.as_pointer]
+  db_security_groups: ["old_sg", my_db_sg.as_pointer(with: :pointer)]
 )
 
 
