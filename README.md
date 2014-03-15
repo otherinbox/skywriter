@@ -38,6 +38,47 @@ Resource.new(
 # }}
 ```
 
+### Template Merging
+
+`Template#merge` can be helpful for intelligently merging two CloudFormation
+templates.  If the same resource exists in both templates it will be included
+in the output, but if two different resources with the same logical name exist 
+and exception will be raised.  Otherwise the output will be the union of the
+two templates.
+
+``` ruby
+Template.new(
+  resources: [Resource.new('ResourceName', foo: 'bar')]
+).merge(
+  Template.new(
+    resources: [Resource.new('ResourceName', foo: 'bar')]
+  )
+).as_json['Resources']  # => {'Resource' => {'Foo' => 'bar'}}
+
+
+Template.new(
+  resources: [Resource.new('ResourceName', foo: 'bar')]
+).merge(
+  Template.new(
+    resources: [Resource.new('ResourceName', baz: 'qux')]
+  )
+).as_json               # => Skywriter::Template::MergeError raised
+```
+
+Note that you can create a `Template` instance from an existing 
+CloudFormation template.  This can be useful for making incremental
+changes to existing documents.
+
+``` ruby
+my_old_janky_cf_template = File.open('cf.json')
+
+Template.new(
+  JSON.load(my_old_janky_cf_template)
+).merge(
+  new_hotness
+)
+```
+
 See the example section below for some more concrete examples.
 
 
