@@ -7,6 +7,7 @@ module Skywriter
         property :IpProtocol
         property :CidrIp
         property :SourceSecurityGroupId
+        property :SourceSecurityGroupName
         property :SourceSecurityGroupOwnerId
         property :DestinationSecurityGroupId
       end
