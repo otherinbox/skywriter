@@ -178,6 +178,8 @@ describe "The implementation" do
     Skywriter::Resource::EC2::Route,
     Skywriter::Resource::EC2::RouteTable,
     Skywriter::Resource::EC2::SecurityGroup,
+    Skywriter::Resource::EC2::SecurityGroupIngress,
+    Skywriter::Resource::EC2::SecurityGroupEgress,
     Skywriter::Resource::EC2::SubnetNetworkAclAssociation,
     Skywriter::Resource::EC2::SubnetRouteTableAssociation,
     Skywriter::Resource::EC2::Subnet,

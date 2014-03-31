@@ -3,21 +3,16 @@ module Skywriter
     module EC2
       # AWS::EC2::SecurityGroupEgress Resource
       #
-      class SecurityGroupEgress < Skywriter::ResourceProperty::EC2::SecurityGroupRule
-        property :DestinationSecurityGroupId
-        property :GroupId
-      end
-    end
-  end
+      class SecurityGroupEgress
+        include Skywriter::Resource
 
-  # This is just for aliasing purposes. Despite the fact that Amazon documents
-  # this class as a resource, it is, in fact, a resource property in all ways.
-  # So, we put it in the place you'd expect if you were looking at the
-  # CloudFormation documentations. And we're aliasing it below in the place
-  # where you'd expect it if you have your head right about how this behaves.
-  class ResourceProperty
-    module EC2
-      SecurityGroupEgress = Skywriter::Resource::EC2::SecurityGroupEgress
+        property :GroupId
+        property :IpProtocol
+        property :CidrIp
+        property :DestinationSecurityGroupId
+        property :FromPort
+        property :ToPort
+      end
     end
   end
 end

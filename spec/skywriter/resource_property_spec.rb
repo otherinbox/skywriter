@@ -124,8 +124,6 @@ describe "The implementation" do
     Skywriter::ResourceProperty::EC2::NetworkInterfacePrivateIPSpecification,
     Skywriter::ResourceProperty::EC2::PortRange,
     Skywriter::ResourceProperty::EC2::SecurityGroupRule,
-    Skywriter::Resource::EC2::SecurityGroupEgress,
-    Skywriter::Resource::EC2::SecurityGroupIngress,
     Skywriter::ResourceProperty::EC2::Tag,
     Skywriter::ResourceProperty::ElasticBeanstalk::EnvironmentTier,
     Skywriter::ResourceProperty::ElasticBeanstalk::OptionSetting,
