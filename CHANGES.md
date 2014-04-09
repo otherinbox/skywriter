@@ -1,5 +1,9 @@
 # Changes
 
+## Unreleased
+
+* Add Resource#[] sugar for GetAtt Function.
+
 ## 1.0.1
 
 * Fix Security Group Rule resource versus resource property. - Peter Whiteside

@@ -150,6 +150,13 @@ describe Skywriter::Resource do
       end
     end
   end
+
+  describe "#[]" do
+    it "return the expected function" do
+      resource = resource_class.new('resource')
+      expect(resource[:PublicDnsName]).to eq({ "Fn::GetAtt" => ['resource', 'PublicDnsName'] })
+    end
+  end
 end
 
 describe "The implementation" do
