@@ -111,6 +111,22 @@ module Skywriter
       end
     end
 
+    # Sugar for using an attribute of this resource in another resource.
+    #
+    # @example
+    #   i = EC2::Instance.new("myInstance", ....)
+    #   dns = Route53::RecordSet.new("masterDNS",
+    #                                 ResourceRecords: [{ i[:PublicDnsName] }],
+    #                                 ...)
+    #
+    # @param attribute_name [Symbol,String] The attribute the function
+    #                                       retrieves from the resource.
+    #
+    # @return [Hash] A hash describing a GetAtt Function
+    def [](attribute_name)
+      Function.get_att(logical_name, attribute_name.to_s)
+    end
+
     # @api private
     #
     # @param dependency [Skywriter::Resource] A Resource upon which this resource depends.
