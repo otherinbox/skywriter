@@ -33,6 +33,18 @@ describe Skywriter::ResourceProperty do
   end
 
   describe "#as_json" do
+    context "with pointer in resource property" do
+      let(:resource) do
+        resource_class.new("resource")
+      end
+
+      subject { resource_property_class.new(foo_bar: resource.as_pointer) }
+
+      it "returns expected value" do
+        expect(subject.as_json).to eq("FooBar" => {"Ref" => 'resource'})
+      end
+    end
+
     context "with missing properties" do
       subject { resource_property_class.new(foo_bar: '1').as_json }
 

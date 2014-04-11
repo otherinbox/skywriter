@@ -21,7 +21,7 @@ module Skywriter
     def as_json(*)
       @as_json ||= property_definitions.each_with_object({}) do |property_definition, hash|
         if (value = property_value(property_definition))
-          hash[property_definition.name] = value
+          hash[property_definition.name] = value.as_json
         end
       end
     end
