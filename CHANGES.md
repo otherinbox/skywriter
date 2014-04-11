@@ -1,7 +1,8 @@
 # Changes
 
-## Unreleased
+## 1.1.0
 
+* Fix ResourceProperty#as_json for rich values
 * Add Resource#[] sugar for GetAtt Function.
 
 ## 1.0.1
