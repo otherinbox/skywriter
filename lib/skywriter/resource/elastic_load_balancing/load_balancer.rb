@@ -12,7 +12,7 @@ module Skywriter
         property :HealthCheck
         property :Instances
         property :LBCookieStickinessPolicy
-        property :LoadBalancerName
+        property :LoadBalancerNames
         property :Listeners
         property :Policies
         property :Scheme
