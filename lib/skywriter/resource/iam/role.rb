@@ -6,6 +6,9 @@ module Skywriter
       class Role
         include Skywriter::Resource
 
+        property :AssumeRolePolicyDocument
+        property :Path
+        property :Policies
       end
     end
   end
