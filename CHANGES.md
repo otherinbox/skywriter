@@ -1,5 +1,9 @@
 # Changes
 
+## 1.1.1
+
+* Add attributes for IAM::Role
+
 ## 1.1.0
 
 * Fix ResourceProperty#as_json for rich values
