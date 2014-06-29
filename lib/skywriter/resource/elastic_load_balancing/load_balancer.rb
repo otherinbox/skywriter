@@ -6,8 +6,10 @@ module Skywriter
       class LoadBalancer
         include Skywriter::Resource
 
+        property :AccessLoggingProperty
         property :AppCookieStickinessPolicy
         property :AvailabilityZones
+        property :ConnectionDrainingPolicy
         property :CrossZone
         property :HealthCheck
         property :Instances
