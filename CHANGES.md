@@ -1,5 +1,9 @@
 # Changes
 
+## Unreleased
+
+* ELB: Add ConnectionDraining and AccessLogging properties plus associated property types. - Bob Potter
+
 ## 1.1.1
 
 * Add attributes for IAM::Role
