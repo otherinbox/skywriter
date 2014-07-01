@@ -1,7 +1,7 @@
 module Skywriter
   class ResourceProperty
     module ElasticLoadBalancing
-      class AccessLoggingPolicy < Skywriter::ResourceProperty
+      class ConnectionDrainingPolicy < Skywriter::ResourceProperty
         property :Enabled
         property :Timeout
       end
