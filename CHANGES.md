@@ -1,8 +1,8 @@
 # Changes
 
-## Unreleased
+## 1.1.3
 
-* ELB: fix incorrect property name -- s/AccessLoggingProperty/AccessLoggingPolicy/
+* ELB: fix incorrect property name -- s/AccessLoggingProperty/AccessLoggingPolicy/. - Bob Potter
 
 ## 1.1.2
 
