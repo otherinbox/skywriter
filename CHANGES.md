@@ -1,5 +1,9 @@
 # Changes
 
+## Unreleased
+
+* ELB: fix incorrect property name -- s/AccessLoggingProperty/AccessLoggingPolicy/
+
 ## 1.1.2
 
 * ELB: Add ConnectionDraining and AccessLogging properties plus associated property types. - Bob Potter
