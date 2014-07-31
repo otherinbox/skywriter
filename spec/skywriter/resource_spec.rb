@@ -165,7 +165,6 @@ describe "The implementation" do
     Skywriter::Resource::AutoScaling::LaunchConfiguration,
     Skywriter::Resource::AutoScaling::ScalingPolicy,
     Skywriter::Resource::AutoScaling::ScheduledAction,
-    Skywriter::Resource::AutoScaling::Trigger,
     Skywriter::Resource::CloudFormation::Stack,
     Skywriter::Resource::CloudFormation::WaitConditionHandle,
     Skywriter::Resource::CloudFormation::WaitCondition,
