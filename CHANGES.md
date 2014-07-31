@@ -1,5 +1,9 @@
 # Changes
 
+## Unreleased
+
+* AWS::AutoScaling::Trigger is a deprecated resource and has been removed. - Peter Whiteside
+
 ## 1.1.3
 
 * ELB: fix incorrect property name -- s/AccessLoggingProperty/AccessLoggingPolicy/. - Bob Potter
