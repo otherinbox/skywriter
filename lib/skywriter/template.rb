@@ -19,6 +19,8 @@ module Skywriter
   class Template
     class MergeError < StandardError; end
 
+    include Skywriter::ArgumentParser
+
     attr_reader :format_version, :description
     attr_reader :parameters, :mappings, :conditions, :resources, :outputs
 
@@ -93,13 +95,6 @@ module Skywriter
     end
 
     private
-
-    def access_liberally(object, key)
-      object[key.to_sym] ||
-        object[key.to_s] ||
-        object[key.to_s.camelcase.to_sym] ||
-        object[key.to_s.camelcase.to_s]
-    end
 
     def merge_value!(attribute, other_value)
       self_value = send(attribute)

@@ -34,6 +34,8 @@ module Skywriter
       end
     end
 
+    include Skywriter::ArgumentParser
+
     attr_reader :logical_name
 
     # @param [String] logical_name The logical name of this Resource.  Will be
@@ -146,13 +148,6 @@ module Skywriter
 
     def all_dependencies
       (additional_dependencies + magical_dependencies).to_a
-    end
-
-    def delete_liberally(hash, key)
-      hash.delete(key.to_sym) ||
-        hash.delete(key.to_s) ||
-        hash.delete(key.to_s.camelcase) ||
-        hash.delete(key.to_s.camelcase.to_sym)
     end
 
     def magical_dependencies
