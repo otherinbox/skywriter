@@ -36,7 +36,7 @@ module Skywriter
 
     attr_reader :logical_name
 
-    # @param [String] logical_name The logical name of this Resource.  Will be
+    # @param [String,Symbol] logical_name The logical name of this Resource. Will be
     #   used as the hash key in the 'Resources' hash
     # @param [Hash] options Options hash.  Valid values depend on the
     #   implementing class - see the AWS documentation at
@@ -46,7 +46,7 @@ module Skywriter
     #   `:update_policy`.
     #
     def initialize(logical_name, options = {})
-      @logical_name = logical_name
+      @logical_name = logical_name.to_s
 
       @additional_dependencies = Set.new(Array(delete_liberally(options, :additional_dependencies)))
       @deletion_policy = delete_liberally(options, :deletion_policy)
