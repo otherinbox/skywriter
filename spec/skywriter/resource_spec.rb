@@ -157,6 +157,23 @@ describe Skywriter::Resource do
       expect(resource[:PublicDnsName]).to eq({ "Fn::GetAtt" => ['resource', 'PublicDnsName'] })
     end
   end
+
+  describe ".top_property" do
+    let(:butts) do
+      class Skywriter::Resource::TopProperty
+        include Skywriter::Resource
+
+        top_property :Butts
+      end
+      Skywriter::Resource::TopProperty
+    end
+
+    it "puts the top property as a peer of Type" do
+      resource = butts.new('resource name', butts: '1.0')
+
+      expect(resource.as_json['resource name']['Butts']).to eq('1.0')
+    end
+  end
 end
 
 describe "The implementation" do

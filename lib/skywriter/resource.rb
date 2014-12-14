@@ -14,6 +14,18 @@ module Skywriter
         @property_definitions ||= []
       end
 
+      # Some docs
+      #
+      # @param name [Symbol] The property name as it exists in the AWS documentation
+      def top_property(name)
+        top_property_definitions << PropertyDefinition.new(name)
+      end
+
+      # A list of top properties
+      def top_property_definitions
+        @top_property_definitions ||= []
+      end
+
       private
 
       def self.extended(base)
@@ -71,7 +83,7 @@ module Skywriter
           'Metadata' => metadata,
           'DeletionPolicy' => deletion_policy,
           'UpdatePolicy' => update_policy,
-        }.reject { |key, value| value.nil? }
+        }.merge(top_properties.as_json).reject { |key, value| value.nil? }
       }
     ensure
       Thread.current[:skywriter_as_json_context] = nil
@@ -167,6 +179,14 @@ module Skywriter
       end
     end
 
+    def top_properties
+      @top_properties ||= top_property_definitions.each_with_object({}) do |property_definition, hash|
+        if (value = property_value(property_definition))
+          hash[property_definition.name] = value
+        end
+      end
+    end
+
     def property_value(property_definition)
       options[property_definition.key.to_sym] ||
         options[property_definition.key.to_s] ||
@@ -176,6 +196,10 @@ module Skywriter
 
     def property_definitions
       self.class.property_definitions
+    end
+
+    def top_property_definitions
+      self.class.top_property_definitions
     end
   end
 end
